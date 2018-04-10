@@ -1,5 +1,6 @@
 
 let mapleader = "\<Space>"
+set clipboard+=unnamed
 
 " Configuration file for vim
 set modelines=0		" CVE-2007-2438
@@ -18,46 +19,41 @@ set encoding=utf-8
 set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set fileformats=unix,dos,mac
 
-"NeoBundle Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
+"--------------------------------------------------------------------------
+"dein setting
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" install dein.vim if not exist
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-" Required:
-set runtimepath+=/Users/gsagawa/.vim/bundle/neobundle.vim/
+" setting start
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-" Required:
-call neobundle#begin(expand('/Users/gsagawa/.vim/bundle'))
+  " setting TOML files
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+  " read TOML and cache
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-" Add or remove your Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
+  "setting finish
+  call dein#end()
+  call dein#save_state()
+endif
 
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-" Required:
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
-
+" install not installed plugin
+if dein#check_install()
+  call dein#install()
+endif
 
 "--------------------------------------------------------------------------
 "display setting
@@ -90,3 +86,7 @@ function! s:vimfiler_my_settings()
 endfunction
  
 "}}}
+
+"--------------------------------------------------------------------------
+"ctags setting
+nnoremap <C-]> g<C-]> 
