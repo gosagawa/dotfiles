@@ -1,4 +1,30 @@
 
+set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+
+" 全角スペース・行末のスペース・タブの可視化
+if has("syntax")
+    syntax on
+
+    " PODバグ対策
+    syn sync fromstart
+
+    function! ActivateInvisibleIndicator()
+        " 下の行の"　"は全角スペース
+        syntax match InvisibleJISX0208Space "　" display containedin=ALL
+        highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
+        "syntax match InvisibleTrailedSpace "[ \t]\+$" display containedin=ALL
+        "highlight InvisibleTrailedSpace term=underline ctermbg=Red guibg=NONE gui=undercurl guisp=darkorange
+        "syntax match InvisibleTab "\t" display containedin=ALL
+        "highlight InvisibleTab term=underline ctermbg=white gui=undercurl guisp=darkslategray
+    endfunction
+
+    augroup invisible
+        autocmd! invisible
+        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
+    augroup END
+endif
+
 let mapleader = "\<Space>"
 set clipboard+=unnamed
 
@@ -67,16 +93,16 @@ set clipboard=unnamed,autoselect
 
 "vimfiler {{{
  
-"vim$B%G%U%)%k%H$N%(%/%9%W%m!<%i$r(Bvimfiler$B$GCV$-49$($k(B
+"vimデフォルトのエクスプローラをvimfilerで置き換える
 let g:vimfiler_as_default_explorer = 1
-"$B%;!<%U%b!<%I$rL58z$K$7$?>uBV$G5/F0$9$k(B
+"セーフモードを無効にした状態で起動する
 let g:vimfiler_safe_mode_by_default = 0
-"$B8=:_3+$$$F$$$k%P%C%U%!$N%G%#%l%/%H%j$r3+$/(B
+"現在開いているバッファのディレクトリを開く
 nnoremap <silent> <Leader>fe :<C-u>VimFilerBufferDir -quit<CR>
-"$B8=:_3+$$$F$$$k%P%C%U%!$r(BIDE$BIw$K3+$/(B
+"現在開いているバッファをIDE風に開く
 nnoremap <silent> <Leader>fi :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
  
-"$B%G%U%)%k%H$N%-!<%^%C%T%s%0$rJQ99(B
+"デフォルトのキーマッピングを変更
 augroup vimrc
   autocmd FileType vimfiler call s:vimfiler_my_settings()
 augroup END
@@ -89,4 +115,34 @@ endfunction
 
 "--------------------------------------------------------------------------
 "ctags setting
-nnoremap <C-]> g<C-]> 
+nnoremap <C-]> g<C-]>
+
+"--------------------------------------------------------------------------
+"window movement
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sn gt
+nnoremap sp gT
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>Unite tab<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
