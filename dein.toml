@@ -34,4 +34,6 @@ repo = 'fatih/vim-go'
 [[plugins]]
 repo = 'stephpy/vim-php-cs-fixer'
 
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
 
