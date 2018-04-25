@@ -16,11 +16,13 @@ set smartindent
 set tabstop=4
 set shiftwidth=2
 set smarttab
+set expandtab
 
 syntax on
 colorscheme desert
 
 let mapleader = "\<Space>"
+set clipboard&
 set clipboard+=unnamed
 
 " Configuration file for vim
@@ -37,8 +39,31 @@ au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 set fileformats=unix,dos,mac
+
+nmap bb :ls<CR>:buf
+
+"--------------------------------------------------------------------------
+"vimrc reedit setting
+nnoremap <silent> <Space>ev  :<C-u>edit $MYVIMRC<CR>
+nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
+nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
+nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
+
+augroup MyAutoCmd
+    autocmd!
+augroup END
+
+if !has('gui_running') && !(has('win32') || has('win64'))
+    " .vimrcの再読込時にも色が変化するようにする
+    autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
+else
+    " .vimrcの再読込時にも色が変化するようにする
+    autocmd MyAutoCmd BufWritePost $MYVIMRC source $MYVIMRC |
+                \if has('gui_running') | source $MYGVIMRC
+    autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
+endif
 
 "--------------------------------------------------------------------------
 "dein setting
@@ -87,7 +112,7 @@ set showmatch
 set clipboard=unnamed,autoselect
 
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
 " 全角スペース・行末のスペース・タブの可視化
 if has("syntax")
@@ -171,10 +196,34 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 "--------------------------------------------------------------------------
 "fugitive setting
 nnoremap [fugitive]  <Nop>
-nmap <space>g [fugitive]
+nmap <space>gi [fugitive]
 nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
 nnoremap <silent> [fugitive]a :Gwrite<CR>
 nnoremap <silent> [fugitive]c :Gcommit-v<CR>
 nnoremap <silent> [fugitive]b :Gblame<CR>
 nnoremap <silent> [fugitive]d :Gdiff<CR>
 nnoremap <silent> [fugitive]m :Gmerge<CR>
+nnoremap <silent> [fugitive]p :Gpush<CR>
+
+"--------------------------------------------------------------------------
+"go-vim
+
+"mapping
+nnoremap [go-vim]  <Nop>
+nmap <space>go [go-vim]
+nnoremap <silent> [go-vim]r :GoRun<CR>
+
+"highlight
+let g:go_hightlight_functions = 1
+let g:go_hightlight_methods = 1
+let g:go_hightlight_structs = 1
+let g:go_hightlight_interfaces = 1
+let g:go_hightlight_operators = 1
+let g:go_hightlight_build_constraints = 1
+
+"other setting
+let g:go_bin_path = $GOPATH.'/bin'
+let g:go_fmt_command = "goimports"
+au FileType go setlocal sw=4 ts=4 sts=4 noet
+filetype plugin on
+
