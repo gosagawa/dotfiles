@@ -45,6 +45,14 @@ set fileformats=unix,dos,mac
 nmap bb :ls<CR>:buf
 
 "--------------------------------------------------------------------------
+"search setting
+
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :<C-u>cfirst<CR>
+nnoremap ]Q :<C-u>clast<CR>
+
+"--------------------------------------------------------------------------
 "vimrc reedit setting
 nnoremap <silent> <Space>ev  :<C-u>edit $MYVIMRC<CR>
 nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
@@ -193,6 +201,19 @@ nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+"--------------------------------------------------------------------------
+"unite setting
+nnoremap <silent> ,e  :<C-u>Unite file_rec/async:!<CR>
+
 "--------------------------------------------------------------------------
 "fugitive setting
 nnoremap [fugitive]  <Nop>
@@ -226,4 +247,5 @@ let g:go_bin_path = $GOPATH.'/bin'
 let g:go_fmt_command = "goimports"
 au FileType go setlocal sw=4 ts=4 sts=4 noet
 filetype plugin on
+
 
