@@ -17,6 +17,8 @@ set tabstop=4
 set shiftwidth=2
 set smarttab
 set expandtab
+filetype plugin on
+filetype indent on
 
 syntax on
 colorscheme desert
@@ -42,7 +44,7 @@ set encoding=utf-8
 set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 set fileformats=unix,dos,mac
 
-nmap bb :ls<CR>:buf
+nmap bf :ls<CR>:buf
 
 "--------------------------------------------------------------------------
 "search setting
@@ -170,7 +172,32 @@ endfunction
 
 "--------------------------------------------------------------------------
 "ctags setting
+set tags=./.tags;$HOME
 nnoremap <C-]> g<C-]>
+
+function! s:execute_ctags() abort
+  " 探すタグファイル名
+  let tag_name = '.tags'
+  " ディレクトリを遡り、タグファイルを探し、パス取得
+  let tags_path = findfile(tag_name, '.;')
+  " タグファイルパスが見つからなかった場合
+  if tags_path ==# ''
+    return
+  endif
+
+  " タグファイルのディレクトリパスを取得
+  " `:p:h`の部分は、:h filename-modifiersで確認
+  let tags_dirpath = fnamemodify(tags_path, ':p:h')
+  " 見つかったタグファイルのディレクトリに移動して、ctagsをバックグラウンド実行（エラー出力破棄）
+  execute 'silent !cd' tags_dirpath '&& ctags -R -f' tag_name '2> /dev/null &'
+endfunction
+
+augroup ctags
+  autocmd!
+  autocmd BufWritePost * call s:execute_ctags()
+augroup END
+
+
 
 "--------------------------------------------------------------------------
 "window movement
@@ -227,6 +254,16 @@ nnoremap <silent> [fugitive]m :Gmerge<CR>
 nnoremap <silent> [fugitive]p :Gpush<CR>
 
 "--------------------------------------------------------------------------
+"html setting
+
+au FileType html setlocal sw=2 sts=2 ts=4 et
+
+"--------------------------------------------------------------------------
+"php setting
+
+au FileType php setlocal sw=4 sts=4 ts=4 et
+
+"--------------------------------------------------------------------------
 "go-vim
 
 "mapping
@@ -246,6 +283,13 @@ let g:go_hightlight_build_constraints = 1
 let g:go_bin_path = $GOPATH.'/bin'
 let g:go_fmt_command = "goimports"
 au FileType go setlocal sw=4 ts=4 sts=4 noet
-filetype plugin on
 
-
+"Airline
+"2016/08/05
+set laststatus=2
+set showtabline=2 " 常にタブラインを表示
+set t_Co=256 " この設定がないと色が正しく表示されない
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_theme='papercolor' "落ち着いた色調が好き
+let g:airline_powerline_fonts = 1
