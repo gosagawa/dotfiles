@@ -45,6 +45,7 @@ set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 set fileformats=unix,dos,mac
 
 nmap bf :ls<CR>:buf
+inoremap jk <esc>
 
 "--------------------------------------------------------------------------
 "search setting
@@ -197,7 +198,11 @@ augroup ctags
   autocmd BufWritePost * call s:execute_ctags()
 augroup END
 
+"--------------------------------------------------------------------------
+"ack.vim setting
 
+let g:ackprg = 'ag --nogroup --nocolor --column'
+nmap . :Ack! <space>
 
 "--------------------------------------------------------------------------
 "window movement
@@ -240,6 +245,14 @@ call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 "--------------------------------------------------------------------------
 "unite setting
 nnoremap <silent> ,e  :<C-u>Unite file_rec/async:!<CR>
+
+"--------------------------------------------------------------------------
+" fzf setting
+set rtp+=/usr/local/opt/fzf
+nmap ; :Buffers<CR>
+nmap t :Files<CR>
+nmap r :Tags<CR>
+nmap , :Ag<CR>
 
 "--------------------------------------------------------------------------
 "fugitive setting
@@ -293,3 +306,5 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_theme='papercolor' "落ち着いた色調が好き
 let g:airline_powerline_fonts = 1
+
+

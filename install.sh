@@ -16,3 +16,5 @@ ln -s ~/dotfiles/dein_lazy.toml ~/.vim/rc/dein_lazy.toml
 
 git config --global core.excludesfile ~/dotfiles/.gitignore
 
+brew install fzf
+brew install the_silver_searcher

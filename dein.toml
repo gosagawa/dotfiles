@@ -51,3 +51,10 @@ repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'szw/vim-tags'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = ['fzf']
+
+[[plugins]]
+repo = 'mileszs/ack.vim'
