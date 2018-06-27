@@ -202,7 +202,7 @@ augroup END
 "ack.vim setting
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
-nmap . :Ack! <space>
+nmap m :Ack!<space>
 
 "--------------------------------------------------------------------------
 "window movement
