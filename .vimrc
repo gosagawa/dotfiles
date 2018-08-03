@@ -46,6 +46,7 @@ set fileformats=unix,dos,mac
 
 nmap bf :ls<CR>:buf
 inoremap jk <esc>
+map <leader>c <plug>(operator-camelize-toggle)
 
 "--------------------------------------------------------------------------
 "search setting

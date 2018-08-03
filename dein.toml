@@ -58,3 +58,7 @@ depends = ['fzf']
 
 [[plugins]]
 repo = 'mileszs/ack.vim'
+
+[[plugins]]
+repo = 'tpope/vim-abolish'
+
