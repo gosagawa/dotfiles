@@ -252,7 +252,7 @@ nnoremap <silent> ,e  :<C-u>Unite file_rec/async:!<CR>
 set rtp+=/usr/local/opt/fzf
 nmap ; :Buffers<CR>
 nmap t :Files<CR>
-nmap r :Tags<CR>
+"nmap r :Tags<CR>
 nmap , :Ag<CR>
 
 "--------------------------------------------------------------------------
