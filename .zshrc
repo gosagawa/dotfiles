@@ -43,7 +43,7 @@ function dreslogf() {
 
 #golang
 export GOPATH=$HOME/dev/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/binA
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 #tmux
 [[ -s /Users/gsagawa/.tmuxinator/scripts/tmuxinator ]] && source /Users/gsagawa/.tmuxinator/scripts/tmuxinator
@@ -79,3 +79,15 @@ eval "$(rbenv init -)"
 
 #load localseting
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+#peco,ghq setting
+function peco-ghq-cd () {
+    local selected_dir=$(ghq list | peco --query "$LBUFFER")
+    if [ -n "$selected_dir" ]; then
+        selected_dir="`ghq root`/$selected_dir"
+        BUFFER="cd ${selected_dir}"
+    fi
+    zle clear-screen
+}
+zle -N peco-ghq-cd
+bindkey '^f' peco-ghq-cd
