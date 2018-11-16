@@ -25,7 +25,7 @@ export EDITOR=/usr/local/bin/vim
 export SHELL=/usr/local/bin/zsh
 
 #git
-alias delbranch='git branch | grep -v "*" | grep -v "develop\|master" | xargs -I % git branch -D %'
+alias delbranch='git branch | grep -v "*" | grep -v "develop\|master" | xargs -I % git branch -d %'
 
 #docker
 alias dlog='docker logs'
