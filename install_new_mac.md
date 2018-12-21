@@ -19,6 +19,8 @@ Macを変えた際にやる事のメモ
 - 壁紙を無しにする
 - sshキーを設置
 - dotfilesをクローン
+- shellをbashからzshに変える
+- install.shを流す
 
 # インストールするアプリ
 - firefox
