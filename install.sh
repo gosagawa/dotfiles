@@ -18,3 +18,7 @@ git config --global core.excludesfile ~/dotfiles/.gitignore
 
 brew install fzf
 brew install the_silver_searcher
+
+# go setting
+go get -u github.com/sourcegraph/go-langserver
+
