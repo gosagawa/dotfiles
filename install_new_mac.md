@@ -17,6 +17,8 @@ Macを変えた際にやる事のメモ
   - https://qiita.com/daichi87gi/items/ded35e9d9a54c8fcb9d6
 - Touch barをカスタマイズ、Sleep追加
 - 壁紙を無しにする
+- sshキーを設置
+- dotfilesをクローン
 
 # インストールするアプリ
 - firefox
@@ -29,3 +31,4 @@ Macを変えた際にやる事のメモ
 - iterm2
 - kiteatic
 - HarooPad
+- git
