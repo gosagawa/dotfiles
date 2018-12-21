@@ -1,5 +1,11 @@
 #!/bin/sh
 
+#install brew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew install zsh
+
+#set dotfiles
 cd $(dirname $0)
 
 for dotfile in .?*
@@ -20,5 +26,25 @@ brew install fzf
 brew install the_silver_searcher
 
 # go setting
+brew install go
+
+mkdir -p ~/go/bin ~/go/pkg ~/go/src
+echo "export GOPATH=$HOME/go" >> ~/.zshrc
+echo "export PATH=$GOPATH/bin:$PATH" >> ~/.zshrc
+
+go get -u github.com/golang/dep/cmd/dep
+
+brew install protobuf
+go get -u google.golang.org/grpc
+go get -u github.com/golang/protobuf/proto
+go get -u github.com/golang/protobuf/protoc-gen-go
+go get -u go.pedge.io/protoeasy/cmd/protoeasy
+go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+
+go get -u golang.org/x/tools/cmd/goimports
+go get -u github.com/kisielk/errcheck
+go get -u golang.org/x/lint/golint
+go get -u github.com/client9/misspell/cmd/misspell
 go get -u github.com/sourcegraph/go-langserver
 
