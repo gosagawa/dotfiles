@@ -31,6 +31,14 @@ Macを変えた際にやる事のメモ
 - powerline用のフォント設定
   - https://qiita.com/nakajiki/items/485c24977f4172761cdf
   - DejaVu Sans Mono for Powerline
+- .gitconfigに以下追加
+```
+[user]
+    name = Go Sagawa
+    email = ***メールアドレス***
+[include]
+    path = ***ホームのパス***/dotfiles/.gitconfig
+```
 
 # インストールするアプリ
 - firefox
