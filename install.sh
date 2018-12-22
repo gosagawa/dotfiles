@@ -32,6 +32,8 @@ brew install go
 mkdir -p ~/go/bin ~/go/pkg ~/go/src
 echo "export GOPATH=$HOME/go" >> ~/.zshrc
 echo "export PATH=$GOPATH/bin:$PATH" >> ~/.zshrc
+GOPATH=$HOME/go
+PATH=$GOPATH/bin:$PATH
 
 go get -u github.com/golang/dep/cmd/dep
 
@@ -48,6 +50,10 @@ go get -u github.com/kisielk/errcheck
 go get -u golang.org/x/lint/golint
 go get -u github.com/client9/misspell/cmd/misspell
 go get -u github.com/sourcegraph/go-langserver
+
+brew install peco
+brew install ghq
+git config --global ghq.root $GOPATH/src
 
 #vim setting
 git clone https://github.com/powerline/fonts.git --depth=1
