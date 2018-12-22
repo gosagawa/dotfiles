@@ -49,3 +49,9 @@ go get -u golang.org/x/lint/golint
 go get -u github.com/client9/misspell/cmd/misspell
 go get -u github.com/sourcegraph/go-langserver
 
+#vim setting
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
