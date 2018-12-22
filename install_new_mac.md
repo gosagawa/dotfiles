@@ -30,6 +30,7 @@ Macを変えた際にやる事のメモ
 - install.shを流す
 - powerline用のフォント設定
   - https://qiita.com/nakajiki/items/485c24977f4172761cdf
+  - DejaVu Sans Mono for Powerline
 
 # インストールするアプリ
 - firefox
