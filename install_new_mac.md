@@ -39,6 +39,7 @@ Macを変えた際にやる事のメモ
 [include]
     path = ***ホームのパス***/dotfiles/.gitconfig
 ```
+- office一式をインストール
 
 # インストールするアプリ
 - firefox
@@ -52,3 +53,4 @@ Macを変えた際にやる事のメモ
 - kiteatic
 - HarooPad
 - git
+- slack
