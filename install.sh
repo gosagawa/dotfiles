@@ -61,6 +61,3 @@ cd fonts
 ./install.sh
 cd ..
 rm -rf fonts
-
-#docker setting
-brew cask install docker
