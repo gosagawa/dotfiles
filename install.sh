@@ -56,6 +56,7 @@ brew install ghq
 git config --global ghq.root $GOPATH/src
 
 #vim setting
+brew install ctags
 git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts
 ./install.sh
