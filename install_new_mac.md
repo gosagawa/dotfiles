@@ -58,3 +58,4 @@ Macを変えた際にやる事のメモ
 - HarooPad
 - git
 - slack
+- CyberDuck
