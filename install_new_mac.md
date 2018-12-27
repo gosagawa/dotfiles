@@ -40,6 +40,10 @@ Macを変えた際にやる事のメモ
     path = ***ホームのパス***/dotfiles/.gitconfig
 ```
 - office一式をインストール
+- vimで以下コマンド実行
+```
+:GoUpdateBinaries
+```
 
 # インストールするアプリ
 - firefox
