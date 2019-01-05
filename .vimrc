@@ -23,7 +23,6 @@ filetype indent on
 syntax on
 colorscheme desert
 
-let mapleader = "\<Space>"
 set clipboard&
 set clipboard+=unnamed
 
@@ -44,9 +43,26 @@ set encoding=utf-8
 set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 set fileformats=unix,dos,mac
 
-nmap bf :ls<CR>:buf
-inoremap jk <esc>
 map <leader>c <plug>(operator-camelize-toggle)
+
+"--------------------------------------------------------------------------
+" base key map
+let mapleader = "\<Space>"
+nmap bf :ls<CR>:buf
+noremap j gj
+noremap k gk
+noremap <S-h>   ^
+noremap <S-j>   }
+noremap <S-k>   {
+noremap <S-l>   $
+inoremap jk <esc>
+nnoremap ZQ <Nop>
+nnoremap Q <Nop>
+nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
+nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
 
 "--------------------------------------------------------------------------
 "search setting
@@ -293,13 +309,25 @@ let g:go_hightlight_interfaces = 1
 let g:go_hightlight_operators = 1
 let g:go_hightlight_build_constraints = 1
 
+nnoremap <leader>gb :w<CR>:GoBuild<CR>
+nnoremap <leader>gt :w<CR>:GoTest<CR>
+nnoremap <leader>gr :GoReferrers<CR>
+nnoremap <leader>gp :GoChannelPeers<CR>
+nnoremap <leader>gm :GoImplements<CR>
+nnoremap <leader>gi :GoInfo<CR>
+nnoremap <leader>gd :GoDoc<CR>
+
 "other setting
 let g:go_bin_path = $GOPATH.'/bin'
 let g:go_fmt_command = "goimports"
+
 au FileType go setlocal sw=4 ts=4 sts=4 noet
 
+"vim-go
+let g:go_guru_scope = ["github.com/..."]
+
+"--------------------------------------------------------------------------
 "Airline
-"2016/08/05
 set laststatus=2
 set showtabline=2 " 常にタブラインを表示
 set t_Co=256 " この設定がないと色が正しく表示されない
@@ -308,4 +336,14 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_theme='papercolor' "落ち着いた色調が好き
 let g:airline_powerline_fonts = 1
 
+"--------------------------------------------------------------------------
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck','misspell', 'go']

@@ -5,6 +5,9 @@ PROMPT="%F{cyan}[%~]%f %# "
 #prevent Ctrl+D logout
 setopt IGNOREEOF
 
+#prevent Ctrl+S command for vim
+stty -ixon
+
 #comp
 autoload -Uz compinit
 compinit
@@ -18,14 +21,39 @@ export SAVEHIST=100000
 setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
 
+#directory
+setopt auto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
+
 #common setting
 alias updatedb='sudo /usr/libexec/locate.updatedb'
 export PATH=$PATH:$HOME/dotfiles/bin
 export EDITOR=/usr/local/bin/vim
 export SHELL=/usr/local/bin/zsh
 
+#common alias
+alias ll='ls -ltr'
+alias la='ls -a'
+alias lal='ls -al'
+alias l='less'
+alias cdp='cd ../'
+alias cdpp='cd ../../'
+alias reload_zshrc="source ~/.zshrc"
+
 #git
 alias delbranch='git branch | grep -v "*" | grep -v "develop\|master" | xargs -I % git branch -d %'
+alias pull='git pull'
+alias push='git push'
+alias st='git status'
+alias stt='git status -uno'
+alias git-submodule-rm="git rm-submodule --no-commit"
+alias gitu="git unstage"
+alias reb='git svn rebase'
+alias gl="git clone"
+alias gu="git fetch --tags --prune&& git pull origin"
+alias tb="git symbolic-ref --short HEAD|tr -d \"\\n\""
+alias cmam="git commit -a -m"
 
 #docker
 alias dlog='docker logs'
@@ -45,7 +73,8 @@ function dreslogf() {
 }
 
 #golang
-export GOPATH=$HOME/dev/go
+export GOPATH=$HOME/go
+export GOBIN=$HOME/go/bin
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 #tmux

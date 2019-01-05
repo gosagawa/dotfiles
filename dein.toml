@@ -95,3 +95,6 @@ endif
 let g:lsp_async_completion = 1
 '''
 
+[[plugins]]
+repo = 'vim-syntastic/syntastic'
+
