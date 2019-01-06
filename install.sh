@@ -50,6 +50,7 @@ go get -u github.com/kisielk/errcheck
 go get -u golang.org/x/lint/golint
 go get -u github.com/client9/misspell/cmd/misspell
 go get -u github.com/sourcegraph/go-langserver
+go get -u bitbucket.org/liamstask/goose/cmd/goose
 
 brew install peco
 brew install ghq
