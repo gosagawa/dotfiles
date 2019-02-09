@@ -42,7 +42,7 @@ alias cdpp='cd ../../'
 alias reload_zshrc="source ~/.zshrc"
 
 #git
-alias delbranch='git branch | grep -v "*" | grep -v "develop\|master" | xargs -I % git branch -d %'
+alias delbranch='git branch | grep -v "*" | grep -v "develop\|master" | xargs -I % git branch -d %;git fetch --prune'
 alias pull='git pull'
 alias push='git push'
 alias st='git status'
