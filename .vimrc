@@ -43,8 +43,6 @@ set encoding=utf-8
 set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 set fileformats=unix,dos,mac
 
-map <leader>c <plug>(operator-camelize-toggle)
-
 "--------------------------------------------------------------------------
 " base key map
 let mapleader = "\<Space>"
@@ -59,10 +57,10 @@ inoremap jk <esc>
 nnoremap ZQ <Nop>
 nnoremap Q <Nop>
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
+nnoremap <silent> ** "zyiw:let @/ =  @z <CR>:set hlsearch<CR>
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
-noremap <silent> <C-S>          :update<CR>
-vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
+nnoremap ss :<C-u>update<CR>
+map <leader>c <plug>(operator-camelize-toggle)
 
 "--------------------------------------------------------------------------
 "search setting
@@ -219,7 +217,7 @@ augroup END
 "ack.vim setting
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
-nmap m :Ack!<space>
+nmap ;m :Ack!<space>
 
 "--------------------------------------------------------------------------
 "window movement
@@ -243,7 +241,7 @@ nnoremap sN :<C-u>bn<CR>
 nnoremap sP :<C-u>bp<CR>
 nnoremap st :<C-u>tabnew<CR>
 nnoremap sT :<C-u>Unite tab<CR>
-nnoremap ss :<C-u>sp<CR>
+"nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>bd<CR>
@@ -269,12 +267,12 @@ set rtp+=/usr/local/opt/fzf
 nmap ;b :Buffers<CR>
 nmap ;f :Files<CR>
 "nmap r :Tags<CR>
-nmap , :Ag<CR>
+nmap ,; :Ag<CR>
 
 "--------------------------------------------------------------------------
 "fugitive setting
 nnoremap [fugitive]  <Nop>
-nmap <space>gi [fugitive]
+nmap <leader>gi [fugitive]
 nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
 nnoremap <silent> [fugitive]a :Gwrite<CR>
 nnoremap <silent> [fugitive]c :Gcommit-v<CR>
@@ -298,8 +296,16 @@ au FileType php setlocal sw=4 sts=4 ts=4 et
 
 "mapping
 nnoremap [go-vim]  <Nop>
-nmap <space>go [go-vim]
+nmap <leader>go [go-vim]
 nnoremap <silent> [go-vim]r :GoRun<CR>
+nnoremap <silent> [go-vim]b :w<CR>:GoBuild<CR>
+nnoremap <silent> [go-vim]t :w<CR>:GoTest<CR>
+nnoremap <silent> [go-vim]r :GoReferrers<CR>
+nnoremap <silent> [go-vim]p :GoChannelPeers<CR>
+nnoremap <silent> [go-vim]m :GoImplements<CR>
+nnoremap <silent> [go-vim]i :GoInfo<CR>
+nnoremap <silent> [go-vim]c :GoDoc<CR>
+nnoremap <silent> [go-vim]s :GoFillStruct<CR>
 
 "highlight
 let g:go_hightlight_functions = 1
@@ -309,22 +315,13 @@ let g:go_hightlight_interfaces = 1
 let g:go_hightlight_operators = 1
 let g:go_hightlight_build_constraints = 1
 
-nnoremap <leader>gb :w<CR>:GoBuild<CR>
-nnoremap <leader>gt :w<CR>:GoTest<CR>
-nnoremap <leader>gr :GoReferrers<CR>
-nnoremap <leader>gp :GoChannelPeers<CR>
-nnoremap <leader>gm :GoImplements<CR>
-nnoremap <leader>gi :GoInfo<CR>
-nnoremap <leader>gd :GoDoc<CR>
 
 "other setting
 let g:go_bin_path = $GOPATH.'/bin'
 let g:go_fmt_command = "goimports"
+let g:go_guru_scope = ["github.com/..."]
 
 au FileType go setlocal sw=4 ts=4 sts=4 noet
-
-"vim-go
-let g:go_guru_scope = ["github.com/..."]
 
 "--------------------------------------------------------------------------
 "Airline
