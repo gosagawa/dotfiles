@@ -5,6 +5,9 @@ Macを変えた際にやる事のメモ
 
 ## 環境まわり
 - トラックパッドの移動速度を最大にする
+```
+defaults write -g com.apple.trackpad.scaling 16
+```
 - キーボードから、キーのリピートを最大にする
 ```
  defaults write -g InitialKeyRepeat -int 10
