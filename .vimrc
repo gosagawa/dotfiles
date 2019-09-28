@@ -58,6 +58,7 @@ nnoremap ZQ <Nop>
 nnoremap Q <Nop>
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 nnoremap <silent> ** "zyiw:let @/ =  @z <CR>:set hlsearch<CR>
+nnoremap Y y$
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 nnoremap ss :<C-u>update<CR>
 map <leader>c <plug>(operator-camelize-toggle)
@@ -322,6 +323,13 @@ let g:go_fmt_command = "goimports"
 let g:go_guru_scope = ["github.com/..."]
 
 au FileType go setlocal sw=4 ts=4 sts=4 noet
+if executable('bingo')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'bingo',
+        \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
 
 "--------------------------------------------------------------------------
 "Airline

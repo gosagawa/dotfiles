@@ -40,6 +40,7 @@ alias l='less'
 alias cdp='cd ../'
 alias cdpp='cd ../../'
 alias reload_zshrc="source ~/.zshrc"
+alias hg='history 1 | grep'
 
 #git
 alias delbranch='git branch | grep -v "*" | grep -v "develop\|master" | xargs -I % git branch -d %;git fetch --prune'
@@ -129,3 +130,6 @@ if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/google-cloud-
 
 # The next line enables shell command completion for gcloud.
 if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/completion.zsh.inc"; fi
+
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=$HOME/flutter/bin:$PATH

@@ -8,6 +8,7 @@ gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Crese
 
 st = status
 cm = commit
+br = branch
 
 # Untracked filesを表示せず，not stagedと，stagedだけの状態を出力する
 stt = status -uno

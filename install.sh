@@ -63,3 +63,7 @@ cd fonts
 ./install.sh
 cd ..
 rm -rf fonts
+
+#tmux
+brew install tmux
+brew install reattach-to-user-namespace
