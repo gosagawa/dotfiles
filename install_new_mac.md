@@ -5,7 +5,14 @@ Macを変えた際にやる事のメモ
 
 ## 環境まわり
 - トラックパッドの移動速度を最大にする
+```
+defaults write -g com.apple.trackpad.scaling 16
+```
 - キーボードから、キーのリピートを最大にする
+```
+ defaults write -g InitialKeyRepeat -int 10
+ defaults write -g KeyRepeat -int 1
+```
 - 1Password.comにログイン
 - icloudにログイン
 - spotlightを開き、ショートカットを無効にする
@@ -14,6 +21,9 @@ Macを変えた際にやる事のメモ
 - 1Password.comをインストールする
 - chromeをインストール、同期する
 - deckを非表示にする
+```
+defaults write com.apple.Dock autohide-delay -float 10; killall Dock
+```
 - キーボードに日本語追加
 - Karabinerをインストール、日本語入力の設定
   - https://qiita.com/daichi87gi/items/ded35e9d9a54c8fcb9d6
