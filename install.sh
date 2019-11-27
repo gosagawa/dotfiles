@@ -26,6 +26,9 @@ git config --global core.excludesfile ~/dotfiles/.gitignore
 brew install fzf
 brew install the_silver_searcher
 
+# javascript setting
+brew install yarn
+
 # go setting
 brew install go
 
@@ -41,7 +44,6 @@ brew install protobuf
 go get -u google.golang.org/grpc
 go get -u github.com/golang/protobuf/proto
 go get -u github.com/golang/protobuf/protoc-gen-go
-go get -u go.pedge.io/protoeasy/cmd/protoeasy
 go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 
@@ -67,3 +69,5 @@ rm -rf fonts
 #tmux
 brew install tmux
 brew install reattach-to-user-namespace
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+

@@ -66,6 +66,8 @@ alias drm='docker rm $(docker ps -aqf "status=exited") 2> /dev/null'
 alias dirm='docker rmi $(docker images -aqf "dangling=true") 2> /dev/null'
 alias dc='docker-compose'
 alias dcrun='dc run --service-ports'
+alias dclog='dc logs --tail=100'
+alias dclogf='dc logs -f --tail=100'
 function dcrm() {
     dc stop $1 && dc rm -f $1
 }
@@ -133,3 +135,6 @@ if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/google-
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/flutter/bin:$PATH
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/Cellar/tfenv/1.0.1/versions/0.12.9/terraform terraform

@@ -43,3 +43,5 @@ ss = stash save
 b = branch
 bn = rev-parse --abbrev-ref HEAD
 
+[push]
+  default = current

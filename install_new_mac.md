@@ -64,6 +64,7 @@ defaults write com.apple.Dock autohide-delay -float 10; killall Dock
 - Sequel Pro
 - postman
 - iterm2
+  - Preference General > Selection > Applications in terminal may access clipboard -> on
 - kiteatic
 - HarooPad
 - git

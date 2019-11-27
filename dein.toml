@@ -83,3 +83,6 @@ repo='natebosch/vim-lsc'
 [[plugins]]
 repo = 'vim-syntastic/syntastic'
 
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+
