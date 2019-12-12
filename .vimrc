@@ -357,5 +357,5 @@ let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck','misspell', 'go']
 "--------------------------------------------------------------------------
 " markdown-preview
 
-call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],'build': 'cd app & yarn install' })
+nnoremap <silent> ;;p :MarkdownPreview<CR> " ;;pでプレビュー
 
