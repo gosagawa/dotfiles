@@ -11,13 +11,14 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'Shougo/vimfiler'
 
 [[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
 repo = 'Shougo/unite.vim'
 
 [[plugins]]
 repo = 'Shougo/unite-outline'
-
-[[plugins]]
-repo = 'Shougo/vimproc'
 
 [[plugins]]
 repo = 'Shougo/vimshell'

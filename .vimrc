@@ -323,12 +323,21 @@ let g:go_fmt_command = "goimports"
 let g:go_guru_scope = ["github.com/..."]
 
 au FileType go setlocal sw=4 ts=4 sts=4 noet
-if executable('bingo')
+if executable('gopls')
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'bingo',
-        \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls']},
         \ 'whitelist': ['go'],
         \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
+endif
+if executable('go-langserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'go-langserver',
+        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
 endif
 
 "--------------------------------------------------------------------------
@@ -351,7 +360,7 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck','misspell', 'go']
+let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck','misspell']
 
 
 "--------------------------------------------------------------------------
