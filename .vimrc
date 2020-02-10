@@ -323,21 +323,17 @@ let g:go_fmt_command = "goimports"
 let g:go_guru_scope = ["github.com/..."]
 
 au FileType go setlocal sw=4 ts=4 sts=4 noet
+
 if executable('gopls')
-    au User lsp_setup call lsp#register_server({
+  augroup LspGo
+    au!
+    autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls']},
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
         \ 'whitelist': ['go'],
         \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
-endif
-if executable('go-langserver')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'go-langserver',
-        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
+    autocmd FileType go setlocal omnifunc=lsp#complete
+  augroup END
 endif
 
 "--------------------------------------------------------------------------
@@ -367,4 +363,11 @@ let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck','misspell']
 " markdown-preview
 
 nnoremap <silent> ;;p :MarkdownPreview<CR> " ;;pでプレビュー
+
+"--------------------------------------------------------------------------
+" vim-terraform
+
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
 
