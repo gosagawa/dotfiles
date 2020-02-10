@@ -138,3 +138,5 @@ export PATH=$HOME/flutter/bin:$PATH
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/Cellar/tfenv/1.0.1/versions/0.12.9/terraform terraform
+
+eval "$(direnv hook zsh)"
