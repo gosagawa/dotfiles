@@ -90,3 +90,7 @@ repo = 'iamcco/markdown-preview.nvim'
 [[plugins]]
 repo = 'hashivim/vim-terraform'
 
+[[plugins]]
+repo  = 'phpactor/phpactor'
+on_ft = ['php']
+build = 'composer install'
