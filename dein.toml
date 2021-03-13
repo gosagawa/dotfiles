@@ -24,9 +24,6 @@ repo = 'Shougo/unite-outline'
 repo = 'Shougo/vimshell'
 
 [[plugins]]
-repo = 'tpope/vim-fugitive'
-
-[[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
 
 [[plugins]]
@@ -64,6 +61,18 @@ repo = 'vim-syntastic/syntastic'
 
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
+
+#--------------------------------------------------------------
+# git
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'tpope/vim-rhubarb'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
 
 #--------------------------------------------------------------
 # go

@@ -6,7 +6,7 @@ set noswapfile
 set ruler
 set cmdheight=2
 set laststatus=2
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+set statusline=%<%f\%{fugitive#statusline()}\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set title
 set showcmd
 
@@ -273,7 +273,7 @@ nmap ;f :Files<CR>
 nmap ,; :Ag<CR>
 
 "--------------------------------------------------------------------------
-"fugitive setting
+"git setting
 nnoremap [fugitive]  <Nop>
 nmap <leader>gi [fugitive]
 nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
@@ -283,6 +283,10 @@ nnoremap <silent> [fugitive]b :Gblame<CR>
 nnoremap <silent> [fugitive]d :Gdiff<CR>
 nnoremap <silent> [fugitive]m :Gmerge<CR>
 nnoremap <silent> [fugitive]p :Gpush<CR>
+
+hi GitGutterAdd    guifg=#009900 ctermfg=2
+hi GitGutterChange guifg=#bbbb00 ctermfg=3
+hi GitGutterDelete guifg=#ff2222 ctermfg=1
 
 "--------------------------------------------------------------------------
 " test setting
