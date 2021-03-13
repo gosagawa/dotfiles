@@ -285,6 +285,17 @@ nnoremap <silent> [fugitive]m :Gmerge<CR>
 nnoremap <silent> [fugitive]p :Gpush<CR>
 
 "--------------------------------------------------------------------------
+" test setting
+let test#strategy = "dispatch"
+let test#go#runner = 'gotest'
+
+nmap <silent> tn :TestNearest<CR>
+nmap <silent> tf :TestFile<CR>
+nmap <silent> ts :TestSuite<CR>
+nmap <silent> tl :TestLast<CR>
+nmap <silent> tv :TestVisit<CR>
+
+"--------------------------------------------------------------------------
 "html setting
 
 au FileType html setlocal sw=2 sts=2 ts=4 et

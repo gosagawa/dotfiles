@@ -66,7 +66,13 @@ repo = 'vim-syntastic/syntastic'
 repo = 'iamcco/markdown-preview.nvim'
 
 #--------------------------------------------------------------
-# vim-lsp
+# go
+
+[[plugins]]
+repo = 'mattn/vim-goimports'
+
+#--------------------------------------------------------------
+# fzf
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
@@ -115,6 +121,15 @@ repo = 'hrsh7th/vim-vsnip'
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip-integ'
+
+#--------------------------------------------------------------
+# test
+
+[[plugins]]
+repo = 'vim-test/vim-test'
+
+[[plugins]]
+repo = 'tpope/vim-dispatch'
 
 #--------------------------------------------------------------
 # terraform
