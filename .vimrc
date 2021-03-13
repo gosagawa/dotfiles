@@ -128,6 +128,8 @@ if dein#check_install()
   call dein#install()
 endif
 
+call map(dein#check_clean(), "delete(v:val, 'rf')")
+
 "--------------------------------------------------------------------------
 "display setting
 set number
@@ -293,48 +295,62 @@ au FileType html setlocal sw=2 sts=2 ts=4 et
 au FileType php setlocal sw=4 sts=4 ts=4 et
 
 "--------------------------------------------------------------------------
-"go-vim
+"lsp
 
-"mapping
-nnoremap [go-vim]  <Nop>
-nmap <leader>go [go-vim]
-nnoremap <silent> [go-vim]r :GoRun<CR>
-nnoremap <silent> [go-vim]b :w<CR>:GoBuild<CR>
-nnoremap <silent> [go-vim]t :w<CR>:GoTest<CR>
-nnoremap <silent> [go-vim]r :GoReferrers<CR>
-nnoremap <silent> [go-vim]p :GoChannelPeers<CR>
-nnoremap <silent> [go-vim]m :GoImplements<CR>
-nnoremap <silent> [go-vim]i :GoInfo<CR>
-nnoremap <silent> [go-vim]c :GoDoc<CR>
-nnoremap <silent> [go-vim]s :GoFillStruct<CR>
-
-"highlight
-let g:go_hightlight_functions = 1
-let g:go_hightlight_methods = 1
-let g:go_hightlight_structs = 1
-let g:go_hightlight_interfaces = 1
-let g:go_hightlight_operators = 1
-let g:go_hightlight_build_constraints = 1
-
-
-"other setting
-let g:go_bin_path = $GOPATH.'/bin'
-let g:go_fmt_command = "goimports"
-let g:go_guru_scope = ["github.com/..."]
-
-au FileType go setlocal sw=4 ts=4 sts=4 noet
-
-if executable('gopls')
-  augroup LspGo
-    au!
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd FileType go setlocal omnifunc=lsp#complete
-  augroup END
+if empty(globpath(&rtp, 'autoload/lsp.vim'))
+  finish
 endif
+
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> <C-]> <plug>(lsp-definition)
+  nmap <buffer> <f2> <plug>(lsp-rename)
+  nmap <buffer> <Leader>d <plug>(lsp-type-definition)
+  nmap <buffer> <Leader>r <plug>(lsp-references)
+  nmap <buffer> <Leader>i <plug>(lsp-implementation)
+  inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+endfunction
+
+augroup lsp_install
+  au!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
+
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 1
+let g:lsp_preview_float = 1
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
+
+let g:lsp_settings = {}
+let g:lsp_settings['gopls'] = {
+  \  'workspace_config': {
+  \    'usePlaceholders': v:true,
+  \    'analyses': {
+  \      'fillstruct': v:true,
+  \    },
+  \  },
+  \  'initialization_options': {
+  \    'usePlaceholders': v:true,
+  \    'analyses': {
+  \      'fillstruct': v:true,
+  \    },
+  \  },
+  \}
+
+" For snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+set completeopt+=menuone
 
 "--------------------------------------------------------------------------
 "Airline

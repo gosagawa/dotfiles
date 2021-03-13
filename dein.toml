@@ -33,12 +33,6 @@ repo = 'ctrlpvim/ctrlp.vim'
 repo = 'flazz/vim-colorschemes'
 
 [[plugins]]
-repo = 'fatih/vim-go'
-
-[[plugins]]
-repo = 'stephpy/vim-php-cs-fixer'
-
-[[plugins]]
 repo = 'tomtom/tcomment_vim'
 
 [[plugins]]
@@ -57,26 +51,10 @@ repo = 'vim-airline/vim-airline-themes'
 repo = 'szw/vim-tags'
 
 [[plugins]]
-repo = 'junegunn/fzf.vim'
-depends = ['fzf']
-
-[[plugins]]
 repo = 'mileszs/ack.vim'
 
 [[plugins]]
 repo = 'tpope/vim-abolish'
-
-[[plugins]]
-repo='prabirshrestha/async.vim'
-
-[[plugins]]
-repo='prabirshrestha/vim-lsp'
-
-[[plugins]]
-repo='prabirshrestha/asyncomplete.vim'
-
-[[plugins]]
-repo='prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
 repo='natebosch/vim-lsc'
@@ -87,8 +65,68 @@ repo = 'vim-syntastic/syntastic'
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
 
+#--------------------------------------------------------------
+# vim-lsp
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = '/usr/local/opt/fzf'
+
+[[plugins]]
+repo = '/usr/local/opt/fzf'
+if = 'isdirectory("/usr/local/opt/fzf")'
+
+[[plugins]]
+repo = '~/.fzf'
+if = 'isdirectory(expand("~/.fzf"))'
+
+#--------------------------------------------------------------
+# vim-lsp
+
+[[plugins]]
+repo='prabirshrestha/async.vim'
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo='prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'SirVer/ultisnips'
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+
+[[plugins]]
+repo = 'thomasfaingnaert/vim-lsp-snippets'
+
+[[plugins]]
+repo = 'thomasfaingnaert/vim-lsp-ultisnips'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+
+#--------------------------------------------------------------
+# terraform
+
 [[plugins]]
 repo = 'hashivim/vim-terraform'
+
+#--------------------------------------------------------------
+# php
+
+[[plugins]]
+repo = 'stephpy/vim-php-cs-fixer'
 
 [[plugins]]
 repo  = 'phpactor/phpactor'
