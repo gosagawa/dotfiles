@@ -1,42 +1,22 @@
+
+#--------------------------------------------------------------
+# vim core 
+
 [[plugins]]
 repo = 'Shougo/dein.vim'
-
-[[plugins]]
-repo = 'Shougo/neosnippet.vim'
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
-repo = 'Shougo/vimfiler'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
-repo = 'Shougo/unite.vim'
+repo = 'kana/vim-submode'
 
-[[plugins]]
-repo = 'Shougo/unite-outline'
-
-[[plugins]]
-repo = 'Shougo/vimshell'
-
-[[plugins]]
-repo = 'ctrlpvim/ctrlp.vim'
+#--------------------------------------------------------------
+# vim appearance
 
 [[plugins]]
 repo = 'flazz/vim-colorschemes'
-
-[[plugins]]
-repo = 'tomtom/tcomment_vim'
-
-[[plugins]]
-repo = 'kana/vim-submode'
-
-[[plugins]]
-repo = 'davidhalter/jedi-vim'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
@@ -44,23 +24,20 @@ repo = 'vim-airline/vim-airline'
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 
-[[plugins]]
-repo = 'szw/vim-tags'
-
-[[plugins]]
-repo = 'mileszs/ack.vim'
+#--------------------------------------------------------------
+# editting
 
 [[plugins]]
 repo = 'tpope/vim-abolish'
 
-[[plugins]]
-repo='natebosch/vim-lsc'
+#--------------------------------------------------------------
+# find files
 
 [[plugins]]
-repo = 'vim-syntastic/syntastic'
+repo = 'Shougo/vimfiler'
 
 [[plugins]]
-repo = 'iamcco/markdown-preview.nvim'
+repo = 'mileszs/ack.vim'
 
 #--------------------------------------------------------------
 # git
@@ -73,6 +50,12 @@ repo = 'tpope/vim-rhubarb'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+
+#--------------------------------------------------------------
+# language common
+
+[[plugins]]
+repo = 'vim-syntastic/syntastic'
 
 #--------------------------------------------------------------
 # go
@@ -156,3 +139,10 @@ repo = 'stephpy/vim-php-cs-fixer'
 repo  = 'phpactor/phpactor'
 on_ft = ['php']
 build = 'composer install'
+
+#--------------------------------------------------------------
+# markdown
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+
