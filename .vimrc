@@ -268,14 +268,18 @@ nmap ,; :Ag<CR>
 "--------------------------------------------------------------------------
 "git setting
 nnoremap [fugitive]  <Nop>
-nmap <leader>gi [fugitive]
-nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
+nmap <leader>g [fugitive]
+nnoremap <silent> [fugitive]s :Gstatus<CR>
 nnoremap <silent> [fugitive]a :Gwrite<CR>
-nnoremap <silent> [fugitive]c :Gcommit-v<CR>
-nnoremap <silent> [fugitive]b :Gblame<CR>
+nnoremap <silent> [fugitive]cm :Gcommit-v<CR>
+nnoremap          [fugitive]co :G checkout 
+nnoremap          [fugitive]cb :G checkout -b 
+nnoremap <silent> [fugitive]bl :Gblame<CR>
 nnoremap <silent> [fugitive]d :Gdiff<CR>
 nnoremap <silent> [fugitive]m :Gmerge<CR>
-nnoremap <silent> [fugitive]p :Gpush<CR>
+nnoremap <silent> [fugitive]ps :G push<CR>
+nnoremap <silent> [fugitive]pl :G pull<CR>
+nnoremap <silent> [fugitive]br :G branch<CR>
 
 hi GitGutterAdd    guifg=#009900 ctermfg=2
 hi GitGutterChange guifg=#bbbb00 ctermfg=3
