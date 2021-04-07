@@ -28,10 +28,16 @@ repo = 'vim-airline/vim-airline-themes'
 # editting
 
 [[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
 repo = 'tpope/vim-abolish'
 
 #--------------------------------------------------------------
 # find files
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
 
 [[plugins]]
 repo = 'Shougo/vimfiler'
@@ -50,12 +56,6 @@ repo = 'tpope/vim-rhubarb'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
-
-#--------------------------------------------------------------
-# language common
-
-[[plugins]]
-repo = 'vim-syntastic/syntastic'
 
 #--------------------------------------------------------------
 # go
