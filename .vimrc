@@ -422,9 +422,9 @@ let g:quickrun_config["gobuild"] = {
 
 let g:quickrun_config["goerrcheck"] = {
 \   'command': 'errcheck',
-\   'cmdopt' : './...',
+\   'cmdopt' : '-blank -ignoretests ./...',
 \   'exec': '%c %o',
 \}
 
-autocmd BufWritePost *.go :QuickRun gobuild
-autocmd BufWritePost *.go :QuickRun goerrcheck
+ " autocmd BufWritePost *.go :QuickRun gobuild
+ " autocmd BufWritePost *.go :QuickRun goerrcheck
