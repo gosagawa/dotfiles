@@ -158,6 +158,14 @@ snippet ewf "errors.Wrapf"
 errors.Wrapf(${1:err}, "${2:message %v}", ${3:args...})
 endsnippet
 
+# if map
+snippet ifm "If with map"
+if ${1:_},ok:= ${2:}[${3:v}]; ok {
+	${0:${VISUAL}}
+}
+endsnippet
+
+
 # error snippet
 snippet errn "Error return" !b
 if err != nil {
@@ -251,22 +259,30 @@ fallthrough
 endsnippet
 
 # for loop
-snippet for "for ... { ... }"
+snippet forl "for ... { ... }"
 for ${1} {
 	${0:${VISUAL}}
 }
 endsnippet
 
 # for integer loop
-snippet fori "for 0..N-1 { ... }"
-for ${1:i} := 0; $1 < ${2:N}; $1++ {
+snippet for "for 0..N-1 { ... }"
+for ${1:i} := 0; $1 < ${2:n}; $1++ {
 	${0:${VISUAL}}
 }
 endsnippet
 
+snippet for2 "for 0..N-1 { ... }"
+for ${1:i} := 0; $1 < ${2:n}; $1++ {
+	for ${3:j} := 0; $3 < ${4:n}; $3++ {
+		${0:${VISUAL}}
+	}
+}
+endsnippet
+
 # for range loop
-snippet forr "for k, v := range items { ... }"
-for ${2:k}, ${3:v} := range ${1} {
+snippet forr "for i, v := range items { ... }"
+for ${2:i}, ${3:v} := range ${1} {
 	${0:${VISUAL}}
 }
 endsnippet
@@ -337,6 +353,14 @@ endsnippet
 # make
 snippet make "make(Type, size)"
 make(${1:[]string}, ${2:0})${0}
+endsnippet
+
+snippet makei "make(Type, size)"
+make([]int, ${1:0})${0}
+endsnippet
+
+snippet makem "make(Type, size)"
+make(map[${1:int}]${2:int})${0}
 endsnippet
 
 # map
@@ -563,3 +587,65 @@ def closing_par(snip, pos):
 endglobal
 
 # vim:ft=snippets:
+
+
+# custom
+snippet out "out(...)"
+out(${1:o})
+${0}
+endsnippet
+
+snippet outs "out(...)"
+out("${0:s}")
+
+endsnippet
+
+snippet outy "out(...)"
+out("Yes")
+
+endsnippet
+
+snippet outn "out(...)"
+out("No")
+
+endsnippet
+
+snippet ni "ni(...)"
+${1:n} := ni()
+${0}
+endsnippet
+
+snippet ni2 "ni2(...)"
+${1:a}, ${2:b} := ni2()
+${0}
+endsnippet
+
+snippet ni3 "ni3(...)"
+${1:a}, ${2:b}, ${3:c} := ni3()
+${0}
+endsnippet
+
+snippet ni4 "ni4(...)"
+${1:a}, ${2:b}, ${3:c}, ${4:d} := ni4()
+${0}
+endsnippet
+
+snippet nis "nis(...)"
+${1:ns} := nis(${2:n})
+${0}
+endsnippet
+
+snippet ni2s "ni2s(...)"
+${1:as}, ${2:bs} := nis(${3:n})
+${0}
+endsnippet
+
+snippet ni3s "ni3s(...)"
+${1:as}, ${2:bs}, ${3:cs} := ni3s(${4:n})
+${0}
+endsnippet
+
+snippet ni4s "ni4s(...)"
+${1:as}, ${2:bs}, ${3:cs}, ${4:ds} := ni4(${5:n})
+${0}
+endsnippet

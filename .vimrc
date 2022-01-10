@@ -356,7 +356,7 @@ let g:lsp_settings['gopls'] = {
 
 " For snippets
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<space>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 set completeopt+=menuone
