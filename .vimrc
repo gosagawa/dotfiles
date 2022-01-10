@@ -63,6 +63,7 @@ nnoremap Y y$
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 nnoremap ss :<C-u>update<CR>
 map <leader>c <plug>(operator-camelize-toggle)
+nnoremap ya :%y<CR>
 
 "--------------------------------------------------------------------------
 "search setting
@@ -122,11 +123,6 @@ if dein#load_state(s:dein_dir)
   "setting finish
   call dein#end()
   call dein#save_state()
-endif
-
-" install not installed plugin
-if dein#check_install()
-  call dein#install()
 endif
 
 call map(dein#check_clean(), "delete(v:val, 'rf')")
