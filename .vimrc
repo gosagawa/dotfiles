@@ -304,6 +304,12 @@ au FileType html setlocal sw=2 sts=2 ts=4 et
 au FileType php setlocal sw=4 sts=4 ts=4 et
 
 "--------------------------------------------------------------------------
+"cpp setting
+
+au FileType cpp setlocal sw=4 sts=4 ts=4 et
+autocmd FileType cpp ClangFormatAutoEnable
+
+"--------------------------------------------------------------------------
 "lsp
 
 if empty(globpath(&rtp, 'autoload/lsp.vim'))
@@ -330,9 +336,6 @@ command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
 
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-" let g:asyncomplete_auto_popup = 1
-" let g:asyncomplete_auto_completeopt = 0
-let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 1
 let g:lsp_preview_float = 1
 let g:lsp_diagnostics_float_cursor = 1
@@ -355,11 +358,41 @@ let g:lsp_settings['gopls'] = {
   \}
 
 " For snippets
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<C-y>"
 let g:UltiSnipsJumpForwardTrigger="<space>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 set completeopt+=menuone
+
+call ddc#custom#patch_global('completionMenu', 'pum.vim')
+call ddc#custom#patch_global('sources', [
+ \ 'around',
+ \ 'vim-lsp',
+ \ 'file'
+ \ ])
+call ddc#custom#patch_global('sourceOptions', {
+ \ '_': {
+ \   'matchers': ['matcher_head'],
+ \   'sorters': ['sorter_rank'],
+ \   'converters': ['converter_remove_overlap'],
+ \ },
+ \ 'around': {'mark': 'around'},
+ \ 'vim-lsp': {
+ \   'mark': 'lsp', 
+ \   'matchers': ['matcher_head'],
+ \   'forceCompletionPattern': '\.|:|->|"\w+/*'
+ \ },
+ \ 'file': {
+ \   'mark': 'file',
+ \   'isVolatile': v:true, 
+ \   'forceCompletionPattern': '\S/\S*'
+ \ }})
+
+" \ 'ultisnips',
+" \ 'ultisnips': {'mark': 'US'},
+call ddc#enable()
+inoremap <Tab> <Cmd>call pum#map#insert_relative(+1)<CR>
+inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
 
 "--------------------------------------------------------------------------
 "Airline
@@ -374,7 +407,7 @@ let g:airline_powerline_fonts = 1
 "--------------------------------------------------------------------------
 " syntastic
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 0

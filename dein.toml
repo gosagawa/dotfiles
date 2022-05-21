@@ -33,6 +33,9 @@ repo = 'thinca/vim-quickrun'
 [[plugins]]
 repo = 'tpope/vim-abolish'
 
+[[plugins]]
+repo = 'rhysd/vim-clang-format'
+
 #--------------------------------------------------------------
 # find files
 
@@ -82,13 +85,34 @@ if = 'isdirectory(expand("~/.fzf"))'
 # vim-lsp
 
 [[plugins]]
-repo='prabirshrestha/async.vim'
+repo='Shougo/ddc.vim'
 
 [[plugins]]
-repo='prabirshrestha/asyncomplete.vim'
+repo='vim-denops/denops.vim'
 
 [[plugins]]
-repo='prabirshrestha/asyncomplete-lsp.vim'
+repo='Shougo/pum.vim'
+
+[[plugins]]
+repo='Shougo/ddc-around'
+
+[[plugins]]
+repo='LumaKernel/ddc-file'
+
+[[plugins]]
+repo='Shougo/ddc-matcher_head'
+
+[[plugins]]
+repo='Shougo/ddc-sorter_rank'
+
+[[plugins]]
+repo='Shougo/ddc-converter_remove_overlap'
+
+[[plugins]]
+repo='shun/ddc-vim-lsp'
+
+[[plugins]]
+repo='matsui54/ddc-ultisnips'
 
 [[plugins]]
 repo='prabirshrestha/vim-lsp'

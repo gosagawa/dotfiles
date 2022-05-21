@@ -79,6 +79,14 @@ function dreslogf() {
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export GODEBUG=asyncpreemptoff=1
+export GOENV_ROOT="$HOME/.goenv"
+export GOENV_DISABLE_GOPATH=1
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+
+#python
+export PATH=$PATH:$HOME/Library/Python/3.8/bin
 
 #tmux
 [[ -s /Users/gsagawa/.tmuxinator/scripts/tmuxinator ]] && source /Users/gsagawa/.tmuxinator/scripts/tmuxinator

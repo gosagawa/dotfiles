@@ -3,8 +3,16 @@
 priority -10
 
 # shorthand variable declaration
-snippet : "v := value"
+snippet v "v := value"
 ${1} := ${0}
+endsnippet
+
+snippet [ "a[b]"
+${1}[${2:i}]${0}
+endsnippet
+
+snippet [[ "a[b][c]"
+${1}[${2:i}][${3:j}]${0}
 endsnippet
 
 # anonymous function
@@ -188,10 +196,10 @@ if err != nil {
 ${0}
 endsnippet
 
-# error log snippet
-snippet errl "Error with log.Fatal(err)" !b
+# error fmt snippet
+snippet errl "Error with fmt.Fatal(err)" !b
 if err != nil {
-	log.Fatal(err)
+	fmt.Fatal(err)
 }
 ${0}
 endsnippet
@@ -340,14 +348,14 @@ if ${1:${VISUAL:err}} != nil {
 }
 endsnippet
 
-# log printf
-snippet lf "log.Printf(...)"
-log.Printf("${1:${VISUAL}} = %+v\n", $1)
+# fmt printf
+snippet lf "fmt.Printf(...)"
+fmt.Printf("${1:${VISUAL}} = %+v\n", $1)
 endsnippet
 
-# log println
-snippet ln "log.Println(...)"
-log.Println("${1:${VISUAL}}")
+# fmt println
+snippet ln "fmt.Println(...)"
+fmt.Println("${1:${VISUAL}}")
 endsnippet
 
 # make
@@ -602,12 +610,17 @@ endsnippet
 
 snippet outy "out(...)"
 out("Yes")
-
+return
 endsnippet
 
 snippet outn "out(...)"
 out("No")
+return
+endsnippet
 
+snippet outm "out(...)"
+out(-1)
+return
 endsnippet
 
 snippet ni "ni(...)"
@@ -636,7 +649,7 @@ ${0}
 endsnippet
 
 snippet ni2s "ni2s(...)"
-${1:as}, ${2:bs} := nis(${3:n})
+${1:as}, ${2:bs} := ni2s(${3:n})
 ${0}
 endsnippet
 
