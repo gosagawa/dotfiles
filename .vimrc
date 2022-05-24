@@ -47,23 +47,46 @@ set fileformats=unix,dos,mac
 "--------------------------------------------------------------------------
 " base key map
 let mapleader = "\<Space>"
+inoremap jk <esc>
+nnoremap ss :<C-u>update<CR>
 nmap bf :ls<CR>:buf
+
+" move cursol
 noremap j gj
 noremap k gk
 noremap <S-h>   ^
 noremap <S-j>   }
 noremap <S-k>   {
 noremap <S-l>   $
-inoremap jk <esc>
+
+" not using
+nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 nnoremap Q <Nop>
+
+" search,convert
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 nnoremap <silent> ** "zyiw:let @/ =  @z <CR>:set hlsearch<CR>
-nnoremap Y y$
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
-nnoremap ss :<C-u>update<CR>
-map <leader>c <plug>(operator-camelize-toggle)
+
+" search,convert
+nnoremap Y y$
 nnoremap ya :%y<CR>
+
+" add empty line
+imap <S-CR> <End><CR>
+imap <C-S-CR> <Home><CR><Up>
+nnoremap <S-CR> mzo<ESC>`z
+nnoremap <C-S-CR> mzO<ESC>`z
+map ✠ <S-CR>
+imap ✠ <S-CR>
+map ✢ <C-S-CR>
+imap ✢ <C-S-CR>
+
+"--------------------------------------------------------------------------
+" operator-camelize
+
+map <Leader>c <plug>(operator-camelize-toggle)
 
 "--------------------------------------------------------------------------
 "search setting
