@@ -11,28 +11,28 @@ set noswapfile
 ```
 set ruler
 ```
-- コマンド部分の高さ
+- コマンド部分 markdown高さ
 ```
 set cmdheight=2
 ```
-- ステータスバーの表示条件 2:ステータスバーを常時表示する
+- ステータスバー markdown表示条件 2:ステータスバーを常時表示する
 ```
 set laststatus=2
 ```
-- ウィンドウのタイトルバーにファイル名を表示。CLI上だと意味ない？
+- ウィンドウ markdownタイトルバーにファイル名を表示。CLI上だと意味ない？
 ```
 set title
 ```
-- 入力中のコマンドを右下に表示
+- 入力中 markdownコマンドを右下に表示
 ```
 set showcmd
 ```
-- 入力中のコマンド表示だが出てない？
+- 入力中 markdownコマンド表示だが出てない？
 ```
 set showcmd
 ```
 - modelineオプションを無効にする
-  - 意図しないコマンドを実行されるCVE-2007-2438の対策も兼ねる
+  - 意図しないコマンドを実行されるCVE-2007-2438 markdown対策も兼ねる
 ```
 set modelines=0
 ```
@@ -53,12 +53,12 @@ filetype indent on
 
 # キーマップ
 
-## メモ
+## 参考サイト
 
-- mapとnoremapの違い
+- mapとnoremap markdown違い
 https://cocopon.me/blog/2013/10/vim-map-noremap/
 
-- Vim のカスタマイズ 〜キー割り当て変更方法〜
+- Vim  markdownカスタマイズ 〜キー割り当て変更方法〜
 https://vimblog.hatenablog.com/entry/vimrc_key_mapping
 
 - vimでキーマッピングする際に考えたほうがいいこと
@@ -85,7 +85,7 @@ nnoremap ss :<C-u>update<CR>
 nmap bf :ls<CR>:buf
 ```
 
-- 表示行単位の移動にする
+- 表示行単位 markdown移動にする
 ```
 noremap j gj
 noremap k gk
@@ -104,16 +104,16 @@ nnoremap ZQ <Nop>
 jnnoremap Q <Nop>
 ```
 
-- スペース二回でカーソル下の単語をハイライトする
+- スペース二回でカーソル下 markdown単語をハイライトする
 ```
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 ```
 
-- アスタリスク二回でカーソル下の文字列をハイライトする
+- アスタリスク二回でカーソル下 markdown文字列をハイライトする
 ```
 nnoremap <silent> ** "zyiw:let @/ =  @z <CR>:set hlsearch<CR>
 ```
-- シャープでカーソル下の単語を置換する
+- シャープでカーソル下 markdown単語を置換する
 ```
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 ```
@@ -140,10 +140,10 @@ map ✢ <C-S-CR>
 imap ✢ <C-S-CR>
 ```
 
-# vimrcの編集
+# vimrc markdown編集
 
-- <Space>evでvimrcの編集
-- <Space>rvでvimrcの再読み込み
+- <Space>evでvimrc markdown編集
+- <Space>rvでvimrc markdown再読み込み
 
 ```
 nnoremap <silent> <Space>ev  :<C-u>edit $MYVIMRC<CR>
@@ -152,7 +152,7 @@ nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| so
 nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 ```
 
-# dein.vimの動作設定
+# dein.vim markdown動作設定
 
 ```
 let s:dein_dir = expand('~/.cache/dein')
@@ -195,7 +195,7 @@ call map(dein#check_clean(), "delete(v:val, 'rf')")
  set statusline=%<%f\%{fugitive#statusline()}\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 ```
 
-- fugitiveのステータスライン
+- fugitive markdownステータスライン
 ```
 %<%f\%{fugitive#statusline()}\ 
 ```
@@ -213,7 +213,7 @@ set clipboard=unnamed,autoselect
 set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
-" 全角スペース・行末のスペース・タブの可視化
+" 全角スペース・行末 markdownスペース・タブ markdown可視化
 if has("syntax")
     syntax on
 
@@ -221,7 +221,7 @@ if has("syntax")
     syn sync fromstart
 
     function! ActivateInvisibleIndicator()
-        " 下の行の"　"は全角スペース
+        " 下 markdown行 markdown"　"は全角スペース
         syntax match InvisibleJISX0208Space "　" display containedin=ALL
         highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
         "syntax match InvisibleTrailedSpace "[ \t]\+$" display containedin=ALL
@@ -239,7 +239,7 @@ endif
 
 # vimfiler 
 
-- vimデフォルトのエクスプローラをvimfilerで置き換える
+- vimデフォルト markdownエクスプローラをvimfilerで置き換える
 ```
 let g:vimfiler_as_default_explorer = 1
 ```
@@ -249,7 +249,7 @@ let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 ```
 
-- <Leader>fe で現在開いているバッファのディレクトリを開く
+- <Leader>fe で現在開いているバッファ markdownディレクトリを開く
 ```
 nnoremap <silent> <Leader>fe :<C-u>VimFilerBufferDir -quit<CR>
 ```
@@ -275,10 +275,10 @@ function! s:execute_ctags() abort
     return
   endif
 
-  " タグファイルのディレクトリパスを取得
-  " `:p:h`の部分は、:h filename-modifiersで確認
+  " タグファイル markdownディレクトリパスを取得
+  " `:p:h` markdown部分は、:h filename-modifiersで確認
   let tags_dirpath = fnamemodify(tags_path, ':p:h')
-  " 見つかったタグファイルのディレクトリに移動して、ctagsをバックグラウンド実行（エラー出力破棄）
+  " 見つかったタグファイル markdownディレクトリに移動して、ctagsをバックグラウンド実行（エラー出力破棄）
   execute 'silent !cd' tags_dirpath '&& ctags -R -f' tag_name '2> /dev/null &'
 endfunction
 
@@ -297,7 +297,7 @@ nmap ;m :Ack!<space>
 ```
 # window関連
 
-## メモ
+## 参考サイト
 
 - [vim] キー再割当てしてみる
 http://sunmoonnotes.blog.fc2.com/blog-entry-93.html
@@ -341,7 +341,7 @@ nnoremap so <C-w>_<C-w>|
 nnoremap sO <C-w>=
 ```
 
-- 高さと幅の調整
+- 高さと幅 markdown調整
 ```
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
@@ -428,7 +428,7 @@ hi GitGutterDelete guifg=#ff2222 ctermfg=1
 
 ## テスト
 
-主にGoのテスト用
+主にGo markdownテスト用
 
 ```
 let test#strategy = "dispatch"
@@ -458,7 +458,27 @@ au FileType php setlocal sw=4 sts=4 ts=4 et
 
 ```
 au FileType cpp setlocal sw=4 sts=4 ts=4 et
-autocmd FileType cpp ClangFormatAutoEnable
+autncmd FileType cpp ClangFormatAutoEnable
 ```
 
 # lsp
+## 参考サイト
+- Vim をモダンな IDE に変える LSP の設定
+  https://mattn.kaoriya.net/software/vim/20191231213507.htm
+
+## 設定
+- gd:定義ジャンプ
+- <Leader>rn :リネーム
+- <Leader>d :型定義ジャンプ
+- <Leader>rf :リファレンス確認
+- <Leader>i :実装ジャンプ
+
+```
+nmap <buffer> gd <plug>(lsp-definition)
+nmap <buffer> <Leader>rn <plug>(lsp-rename)
+nmap <buffer> <Leader>d <plug>(lsp-type-definition)
+nmap <buffer> <Leader>rf <plug>(lsp-references)
+nmap <buffer> <Leader>i <plug>(lsp-implementation)
+inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+```
+
