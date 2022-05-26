@@ -3,33 +3,7 @@
  repo = 'Shougo/ddc.vim'
  on_event = 'InsertEnter'
  depends = ['denops.vim']
- hook_source = '''
- call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'vsnip'])
- call ddc#custom#patch_global('sourceOptions', {
-      \ '_': {
-      \ 'matchers': ['matcher_head'],
-      \ 'sorters': ['sorter_rank'],
-      \ 'converters': ['converter_remove_overlap'],
-      \ },
-      \ 'around': {'mark': 'A'},
-      \ 'vim-lsp': {
-      \ 'mark': 'L',
-      \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*',
-      \ },
-      \ })
 
- call ddc#custom#patch_global('sourceParams', {
-      \ 'around': {'maxSize': 500},
-      \ })
-
- inoremap <silent><expr> <TAB>
-      \ ddc#map#pum_visible() ? '<C-n>' :
-      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-      \ '<TAB>' : ddc#map#manual_complete()
- inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
-
- call ddc#enable()
-'''
 [[plugins]]
  repo = 'Shougo/ddc-around'
  on_source = 'ddc.vim'
@@ -54,15 +28,6 @@
  repo = 'hrsh7th/vim-vsnip'
  on_event = 'InsertEnter'
  depends = ['vim-vsnip-integ', 'friendly-snippets']
- hook_add = '''
- imap <expr> <C-y> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-y>'
- smap <expr> <C-y> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-y>'
- imap <expr> <space> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<space>'
- smap <expr> <space> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<space>'
- imap <expr> <s-tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>'
- smap <expr> <s-tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>'
- let g:vsnip_filetypes = {}
- '''
 
 [[plugins]]
  repo = 'hrsh7th/vim-vsnip-integ'

@@ -392,20 +392,19 @@ nmap ,; :Ag<CR>
 - <leader>gs:ステータス表示
 - <leader>ga:git add
 - <leader>gcm: git commit -v
-- <leader>gcm: git checkout 
-- <leader>gcm: git checkout -o
+- <leader>go: git checkout
+- <leader>gb: git checkout -b
 - <leader>gbl: git blame
 - <leader>gd: git diff
 - <leader>gm: git mergbe
 - <leader>gps: git push
 - <leader>gpl: git pull
 - <leader>gbr: git branch
-- <leader>gbr: git branch
 
 ```
 nnoremap <silent> [fugitive]s :G status<CR>
 nnoremap <silent> [fugitive]a :Gwrite<CR>
-nnoremap <silent> [fugitive]cm :Gcommit-v<CR>
+nnoremap <silent> [fugitive]cm :G commit-v<CR>
 nnoremap          [fugitive]co :G checkout 
 nnoremap          [fugitive]cb :G checkout -b 
 nnoremap <silent> [fugitive]bl :Gblame<CR>

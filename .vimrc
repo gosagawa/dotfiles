@@ -285,7 +285,8 @@ nnoremap [fugitive]  <Nop>
 nmap <leader>g [fugitive]
 nnoremap <silent> [fugitive]s :G status<CR>
 nnoremap <silent> [fugitive]a :Gwrite<CR>
-nnoremap <silent> [fugitive]cm :Gcommit-v<CR>
+nnoremap <silent> [fugitive]cm :G commit -v<CR>
+nnoremap <silent> [fugitive]cam :G commit -a<CR>
 nnoremap          [fugitive]co :G checkout 
 nnoremap          [fugitive]cb :G checkout -b 
 nnoremap <silent> [fugitive]bl :Gblame<CR>
@@ -373,8 +374,50 @@ let g:lsp_settings['gopls'] = {
   \  },
   \}
 
-" For snippets
-let g:UltiSnipsExpandTrigger="<C-y>"
+"--------------------------------------------------------------------------
+" ddc.vim
+
+ call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'vsnip'])
+ call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \ 'matchers': ['matcher_head'],
+      \ 'sorters': ['sorter_rank'],
+      \ 'converters': ['converter_remove_overlap'],
+      \ },
+      \ 'around': {'mark': 'A'},
+      \ 'vim-lsp': {
+      \ 'mark': 'L',
+      \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*',
+      \ },
+      \ })
+
+ call ddc#custom#patch_global('sourceParams', {
+      \ 'around': {'maxSize': 500},
+      \ })
+
+ inoremap <silent><expr> <TAB>
+      \ ddc#map#pum_visible() ? '<C-n>' :
+      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+      \ '<TAB>' : ddc#map#manual_complete()
+ inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+ inoremap <expr><cr> ddc#map#pum_visible() ? '<c-p>' : '<cr>'
+
+ call ddc#enable()
+
+"--------------------------------------------------------------------------
+" snippet
+
+" vsnip
+imap <expr> <C-y> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-y>'
+smap <expr> <C-y> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-y>'
+imap <expr> <space> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<space>'
+smap <expr> <space> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<space>'
+imap <expr> <s-tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>'
+smap <expr> <s-tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>'
+let g:vsnip_filetypes = {}
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<C-u>"
 let g:UltiSnipsJumpForwardTrigger="<space>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
