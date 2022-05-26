@@ -6,7 +6,6 @@ set noswapfile
 set ruler
 set cmdheight=2
 set laststatus=2
-set statusline=%<%f\%{fugitive#statusline()}\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set title
 set showcmd
 
@@ -89,14 +88,6 @@ imap ✢ <C-S-CR>
 map <Leader>c <plug>(operator-camelize-toggle)
 
 "--------------------------------------------------------------------------
-"search setting
-
-nnoremap [q :cprevious<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :<C-u>cfirst<CR>
-nnoremap ]Q :<C-u>clast<CR>
-
-"--------------------------------------------------------------------------
 "vimrc reedit setting
 nnoremap <silent> <Space>ev  :<C-u>edit $MYVIMRC<CR>
 nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
@@ -152,6 +143,8 @@ call map(dein#check_clean(), "delete(v:val, 'rf')")
 
 "--------------------------------------------------------------------------
 "display setting
+
+set statusline=%<%f\%{fugitive#statusline()}\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set number
 set autoindent
 set incsearch
@@ -189,11 +182,8 @@ endif
 "--------------------------------------------------------------------------
 "vimfiler 
  
-"vimデフォルトのエクスプローラをvimfilerで置き換える
 let g:vimfiler_as_default_explorer = 1
-"セーフモードを無効にした状態で起動する
 let g:vimfiler_safe_mode_by_default = 0
-"現在開いているバッファのディレクトリを開く
 nnoremap <silent> <Leader>fe :<C-u>VimFilerBufferDir -quit<CR>
 "現在開いているバッファをIDE風に開く
 nnoremap <silent> <Leader>fi :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
@@ -206,8 +196,7 @@ function! s:vimfiler_my_settings()
   nmap <buffer> q <Plug>(vimfiler_exit)
   nmap <buffer> Q <Plug>(vimfiler_hide)
 endfunction
- 
-"}}}
+
 
 "--------------------------------------------------------------------------
 "ctags setting
@@ -246,24 +235,29 @@ nmap ;m :Ack!<space>
 "window movement
 
 nnoremap s <Nop>
+
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap sh <C-w>h
+
 nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
 nnoremap sL <C-w>L
 nnoremap sH <C-w>H
+
+nnoremap st :<C-u>tabnew<CR>
 nnoremap sn gt
 nnoremap sp gT
-nnoremap sr <C-w>r
+
 nnoremap s= <C-w>=
 nnoremap sw <C-w>w
 nnoremap so <C-w>_<C-w>|
 nnoremap sO <C-w>=
+
 nnoremap sN :<C-u>bn<CR>
 nnoremap sP :<C-u>bp<CR>
-nnoremap st :<C-u>tabnew<CR>
+
 nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>bd<CR>
@@ -289,7 +283,7 @@ nmap ,; :Ag<CR>
 "git setting
 nnoremap [fugitive]  <Nop>
 nmap <leader>g [fugitive]
-nnoremap <silent> [fugitive]s :Gstatus<CR>
+nnoremap <silent> [fugitive]s :G status<CR>
 nnoremap <silent> [fugitive]a :Gwrite<CR>
 nnoremap <silent> [fugitive]cm :Gcommit-v<CR>
 nnoremap          [fugitive]co :G checkout 
@@ -343,8 +337,7 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
   nmap <buffer> gd <plug>(lsp-definition)
-  nmap <buffer> <C-]> <plug>(lsp-definition)
-  nmap <buffer> <f2> <plug>(lsp-rename)
+  nmap <buffer> gr <plug>(lsp-rename)
   nmap <buffer> <Leader>d <plug>(lsp-type-definition)
   nmap <buffer> <Leader>r <plug>(lsp-references)
   nmap <buffer> <Leader>i <plug>(lsp-implementation)
@@ -438,12 +431,6 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck','misspell']
-
-
-"--------------------------------------------------------------------------
-" markdown-preview
-
-nnoremap <silent> ;;p :MarkdownPreview<CR> " ;;pでプレビュー
 
 "--------------------------------------------------------------------------
 " vim-terraform
