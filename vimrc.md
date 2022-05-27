@@ -408,6 +408,8 @@ nmap ,; :Ag<CR>
 
 # git setting
 
+
+
 ## fugitive-vim
 - <leader>gs:ステータス表示
 - <leader>ga:git add
@@ -415,6 +417,8 @@ nmap ,; :Ag<CR>
 - <leader>go: git checkout
 - <leader>gb: git checkout -b
 - <leader>gbl: git blame
+  - より遡りたい時は~を遡りたい行で指定すると遡れる
+    - [fugitiveの:Gblameで更に過去にさかのぼる方法](https://qiita.com/yuku_t/items/6b2f3a0b2025bb360da3)
 - <leader>gd: git diff
 - <leader>gm: git mergbe
 - <leader>gps: git push

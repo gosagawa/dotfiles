@@ -311,7 +311,7 @@ nnoremap <silent> [fugitive]cmv :G commit -v<CR>
 nnoremap          [fugitive]cm :G commit -a -m ""<Left>
 nnoremap          [fugitive]co :G checkout 
 nnoremap          [fugitive]cb :G checkout -b 
-nnoremap <silent> [fugitive]bl :Gblame<CR>
+nnoremap <silent> [fugitive]b :G blame<CR>
 nnoremap <silent> [fugitive]d :Gdiff<CR>
 nnoremap <silent> [fugitive]m :Gmerge<CR>
 nnoremap <silent> [fugitive]ps :G push<CR>
