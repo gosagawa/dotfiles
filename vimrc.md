@@ -50,7 +50,6 @@ filetype plugin on
 filetype indent on
 ```
 
-
 # キーマップ
 
 ## 参考サイト
@@ -63,7 +62,7 @@ filetype indent on
 ## 全般
 - Leaderキー<Leader>をスペースに設定
 ```
-let mapleader = '<Space>'
+let mapleader = "\<Space>"
 ```
 - jkでインサートモードを抜ける
 ```
@@ -317,9 +316,7 @@ nmap ;m :Ack!<space>
 
 ## 参考サイト
 
-- [vim] キー再割当てしてみる
-http://sunmoonnotes.blog.fc2.com/blog-entry-93.html
-
+-[vim キー再割当てしてみる](http://sunmoonnotes.blog.fc2.com/blog-entry-93.html)
 
 ## 設定
 
@@ -390,7 +387,7 @@ nnoremap sQ :<C-u>bd<CR>
 
 # fzf設定
 
-## 参考URL
+## 参考サイト
 
 - [fzfを使おう](https://qiita.com/kompiro/items/a09c0b44e7c741724c80)
 曖昧検索ができる。
@@ -485,22 +482,21 @@ autncmd FileType cpp ClangFormatAutoEnable
 
 # lsp
 ## 参考サイト
-- Vim をモダンな IDE に変える LSP の設定
-  https://mattn.kaoriya.net/software/vim/20191231213507.htm
+- [Vim をモダンな IDE に変える LSP の設定](https://mattn.kaoriya.net/software/vim/20191231213507.htm)
 
 ## 設定
 - gd:定義ジャンプ
+- gi:実装ジャンプ
 - <Leader>rn :リネーム
 - <Leader>d :型定義ジャンプ
 - <Leader>rf :リファレンス確認
-- <Leader>i :実装ジャンプ
 
 ```
 nmap <buffer> gd <plug>(lsp-definition)
+nmap <buffer> gi <plug>(lsp-implementation)
 nmap <buffer> <Leader>rn <plug>(lsp-rename)
 nmap <buffer> <Leader>d <plug>(lsp-type-definition)
 nmap <buffer> <Leader>rf <plug>(lsp-references)
-nmap <buffer> <Leader>i <plug>(lsp-implementation)
 inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 ```
 
@@ -529,15 +525,15 @@ let g:lsp_settings['gopls'] = {
   \}
 ```
 
-# ddc.vim
+# 補完、スニペット
 
-## 参考URL
+## 参考サイト
 
 - [新世代の自動補完プラグイン ddc.vim](https://zenn.dev/shougo/articles/ddc-vim-beta)
-
 - [ddc.vimとBuiltin LSPでサブ武器を錬成した](https://riq0h.jp/2021/09/15/084023/)
+- [Vimの補完を他エディタやIDEのような挙動にするようにする](https://note.com/yasukotelin/n/na87dc604e042)
 
-## 設定
+## ddc.vim
 ```
  call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'vsnip'])
  call ddc#custom#patch_global('sourceOptions', {
@@ -574,7 +570,7 @@ let g:lsp_settings['gopls'] = {
 set completeopt+=menuone
 ```
 
-# スニペット
+## スニペット
 
 - C-yでvsnip展開、スペース、Shift+スペースで前後移動
 

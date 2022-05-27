@@ -45,7 +45,7 @@ set fileformats=unix,dos,mac
 
 "--------------------------------------------------------------------------
 " base key map
-let mapleader = '<Space>'
+let mapleader = "\<Space>"
 inoremap jk <esc>
 nnoremap ss :<C-u>update<CR>
 nmap bf :ls<CR>:buf
@@ -280,6 +280,7 @@ nnoremap sN :<C-u>bn<CR>
 nnoremap sP :<C-u>bp<CR>
 
 nnoremap sv :<C-u>vs<CR>
+nnoremap sp :<C-u>sp<CR>
 nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>bd<CR>
 
@@ -359,10 +360,10 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
   nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> gi <plug>(lsp-implementation)
   nmap <buffer> <Leader>rn <plug>(lsp-rename)
   nmap <buffer> <Leader>d <plug>(lsp-type-definition)
   nmap <buffer> <Leader>rf <plug>(lsp-references)
-  nmap <buffer> <Leader>i <plug>(lsp-implementation)
   inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 endfunction
 
