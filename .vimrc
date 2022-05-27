@@ -307,7 +307,7 @@ nnoremap [fugitive]  <Nop>
 nmap <leader>g [fugitive]
 nnoremap <silent> [fugitive]s :G status<CR>
 nnoremap <silent> [fugitive]a :Gwrite<CR>
-nnoremap <silent> [fugitive]cmv :G commit -v<CR>
+nnoremap <silent> [fugitive]cv :G commit -v<CR>
 nnoremap          [fugitive]cm :G commit -a -m ""<Left>
 nnoremap          [fugitive]co :G checkout 
 nnoremap          [fugitive]cb :G checkout -b 
