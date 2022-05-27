@@ -179,7 +179,6 @@ if has("syntax")
     augroup END
 endif
 
-"--------------------------------------------------------------------------
 "Airline
 set laststatus=2
 set showtabline=2 " 常にタブラインを表示
@@ -307,8 +306,8 @@ nnoremap [fugitive]  <Nop>
 nmap <leader>g [fugitive]
 nnoremap <silent> [fugitive]s :G status<CR>
 nnoremap <silent> [fugitive]a :Gwrite<CR>
-nnoremap <silent> [fugitive]cm :G commit -v<CR>
-nnoremap <silent> [fugitive]cam :G commit -a<CR>
+nnoremap <silent> [fugitive]cmv :G commit -v<CR>
+nnoremap          [fugitive]cm :G commit -a -m ""
 nnoremap          [fugitive]co :G checkout 
 nnoremap          [fugitive]cb :G checkout -b 
 nnoremap <silent> [fugitive]bl :Gblame<CR>
@@ -422,7 +421,7 @@ inoremap <silent><expr> <TAB>
       \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
       \ '<TAB>' : ddc#map#manual_complete()
 inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
-inoremap <expr><cr> ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+inoremap <expr><cr> ddc#map#pum_visible() ? '<C-y>' : '<cr>'
 
 call ddc#enable()
 
