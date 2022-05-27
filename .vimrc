@@ -45,7 +45,7 @@ set fileformats=unix,dos,mac
 
 "--------------------------------------------------------------------------
 " base key map
-let mapleader = "\<Space>"
+let mapleader = '<Space>'
 inoremap jk <esc>
 nnoremap ss :<C-u>update<CR>
 nmap bf :ls<CR>:buf
@@ -178,6 +178,28 @@ if has("syntax")
         autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
     augroup END
 endif
+
+"--------------------------------------------------------------------------
+"Airline
+set laststatus=2
+set showtabline=2 " 常にタブラインを表示
+set t_Co=256 " この設定がないと色が正しく表示されない
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_theme='papercolor' "落ち着いた色調が好き
+let g:airline_powerline_fonts = 1
+
+"--------------------------------------------------------------------------
+" syntastic
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck','misspell']
 
 "--------------------------------------------------------------------------
 "vimfiler 
@@ -377,8 +399,8 @@ let g:lsp_settings['gopls'] = {
 "--------------------------------------------------------------------------
 " ddc.vim
 
- call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'vsnip'])
- call ddc#custom#patch_global('sourceOptions', {
+call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'vsnip'])
+call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \ 'matchers': ['matcher_head'],
       \ 'sorters': ['sorter_rank'],
@@ -391,18 +413,20 @@ let g:lsp_settings['gopls'] = {
       \ },
       \ })
 
- call ddc#custom#patch_global('sourceParams', {
+call ddc#custom#patch_global('sourceParams', {
       \ 'around': {'maxSize': 500},
       \ })
 
- inoremap <silent><expr> <TAB>
+inoremap <silent><expr> <TAB>
       \ ddc#map#pum_visible() ? '<C-n>' :
       \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
       \ '<TAB>' : ddc#map#manual_complete()
- inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
- inoremap <expr><cr> ddc#map#pum_visible() ? '<c-p>' : '<cr>'
+inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+inoremap <expr><cr> ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
 
- call ddc#enable()
+call ddc#enable()
+
+set completeopt+=menuone
 
 "--------------------------------------------------------------------------
 " snippet
@@ -420,30 +444,6 @@ let g:vsnip_filetypes = {}
 let g:UltiSnipsExpandTrigger="<C-u>"
 let g:UltiSnipsJumpForwardTrigger="<space>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-set completeopt+=menuone
-
-"--------------------------------------------------------------------------
-"Airline
-set laststatus=2
-set showtabline=2 " 常にタブラインを表示
-set t_Co=256 " この設定がないと色が正しく表示されない
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline_theme='papercolor' "落ち着いた色調が好き
-let g:airline_powerline_fonts = 1
-
-"--------------------------------------------------------------------------
-" syntastic
-set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck','misspell']
 
 "--------------------------------------------------------------------------
 " vim-terraform

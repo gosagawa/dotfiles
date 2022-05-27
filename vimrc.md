@@ -11,28 +11,28 @@ set noswapfile
 ```
 set ruler
 ```
-- コマンド部分 markdown高さ
+- コマンド部分の高さ
 ```
 set cmdheight=2
 ```
-- ステータスバー markdown表示条件 2:ステータスバーを常時表示する
+- ステータスバーの表示条件 2:ステータスバーを常時表示する
 ```
 set laststatus=2
 ```
-- ウィンドウ markdownタイトルバーにファイル名を表示。CLI上だと意味ない？
+- ウィンドウのタイトルバーにファイル名を表示。CLI上だと意味ない？
 ```
 set title
 ```
-- 入力中 markdownコマンドを右下に表示
+- 入力中のコマンドを右下に表示
 ```
 set showcmd
 ```
-- 入力中 markdownコマンド表示だが出てない？
+- 入力中のコマンド表示だが出てない？
 ```
 set showcmd
 ```
 - modelineオプションを無効にする
-  - 意図しないコマンドを実行されるCVE-2007-2438 markdown対策も兼ねる
+  - 意図しないコマンドを実行されるCVE-2007-2438の対策も兼ねる
 ```
 set modelines=0
 ```
@@ -55,22 +55,15 @@ filetype indent on
 
 ## 参考サイト
 
-- mapとnoremap markdown違い
-https://cocopon.me/blog/2013/10/vim-map-noremap/
-
-- Vim  markdownカスタマイズ 〜キー割り当て変更方法〜
-https://vimblog.hatenablog.com/entry/vimrc_key_mapping
-
-- vimでキーマッピングする際に考えたほうがいいこと
-https://deris.hatenablog.jp/entry/2013/05/02/192415
-
-- 俺的にはずせない【Vim】こだわりのmap（説明付き）
-https://qiita.com/itmammoth/items/312246b4b7688875d023
+- [mapとnoremapの違い](https://cocopon.me/blog/2013/10/vim-map-noremap/)
+- [Vim のカスタマイズ 〜キー割り当て変更方法〜](https://vimblog.hatenablog.com/entry/vimrc_key_mapping)
+- [vimでキーマッピングする際に考えたほうがいいこと](https://deris.hatenablog.jp/entry/2013/05/02/192415)
+- [俺的にはずせない【Vim】こだわりのmap（説明付き）](https://qiita.com/itmammoth/items/312246b4b7688875d023)
 
 ## 全般
 - Leaderキー<Leader>をスペースに設定
 ```
-let mapleader = "\<Space>"
+let mapleader = '<Space>'
 ```
 - jkでインサートモードを抜ける
 ```
@@ -85,7 +78,7 @@ nnoremap ss :<C-u>update<CR>
 nmap bf :ls<CR>:buf
 ```
 
-- 表示行単位 markdown移動にする
+- 表示行単位の移動にする
 ```
 noremap j gj
 noremap k gk
@@ -104,16 +97,16 @@ nnoremap ZQ <Nop>
 jnnoremap Q <Nop>
 ```
 
-- スペース二回でカーソル下 markdown単語をハイライトする
+- スペース二回でカーソル下の単語をハイライトする
 ```
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 ```
 
-- アスタリスク二回でカーソル下 markdown文字列をハイライトする
+- アスタリスク二回でカーソル下の文字列をハイライトする
 ```
 nnoremap <silent> ** "zyiw:let @/ =  @z <CR>:set hlsearch<CR>
 ```
-- シャープでカーソル下 markdown単語を置換する
+- シャープでカーソル下の単語を置換する
 ```
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 ```
@@ -140,10 +133,10 @@ map ✢ <C-S-CR>
 imap ✢ <C-S-CR>
 ```
 
-# vimrc markdown編集
+# vimrcの編集
 
-- <Space>evでvimrc markdown編集
-- <Space>rvでvimrc markdown再読み込み
+- <Space>evでvimrcの編集
+- <Space>rvでvimrcの再読み込み
 
 ```
 nnoremap <silent> <Space>ev  :<C-u>edit $MYVIMRC<CR>
@@ -152,7 +145,7 @@ nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| so
 nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 ```
 
-# dein.vim markdown動作設定
+# dein.vimの動作設定
 
 ```
 let s:dein_dir = expand('~/.cache/dein')
@@ -195,7 +188,7 @@ call map(dein#check_clean(), "delete(v:val, 'rf')")
  set statusline=%<%f\%{fugitive#statusline()}\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 ```
 
-- fugitive markdownステータスライン
+- fugitiveのステータスライン
 ```
 %<%f\%{fugitive#statusline()}\ 
 ```
@@ -213,7 +206,7 @@ set clipboard=unnamed,autoselect
 set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
-" 全角スペース・行末 markdownスペース・タブ markdown可視化
+" 全角スペース・行末のスペース・タブの可視化
 if has("syntax")
     syntax on
 
@@ -221,7 +214,7 @@ if has("syntax")
     syn sync fromstart
 
     function! ActivateInvisibleIndicator()
-        " 下 markdown行 markdown"　"は全角スペース
+        " 下の行の"　"は全角スペース
         syntax match InvisibleJISX0208Space "　" display containedin=ALL
         highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
         "syntax match InvisibleTrailedSpace "[ \t]\+$" display containedin=ALL
@@ -237,9 +230,34 @@ if has("syntax")
 endif
 ```
 
+## Airline
+
+```
+set laststatus=2
+set showtabline=2 " 常にタブラインを表示
+set t_Co=256 " この設定がないと色が正しく表示されない
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_theme='papercolor' "落ち着いた色調が好き
+let g:airline_powerline_fonts = 1
+```
+# syntastic
+
+```
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck','misspell']
+```
+
 # vimfiler 
 
-- vimデフォルト markdownエクスプローラをvimfilerで置き換える
+- vimデフォルトのエクスプローラをvimfilerで置き換える
 ```
 let g:vimfiler_as_default_explorer = 1
 ```
@@ -249,7 +267,7 @@ let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 ```
 
-- <Leader>fe で現在開いているバッファ markdownディレクトリを開く
+- <Leader>fe で現在開いているバッファのディレクトリを開く
 ```
 nnoremap <silent> <Leader>fe :<C-u>VimFilerBufferDir -quit<CR>
 ```
@@ -275,10 +293,10 @@ function! s:execute_ctags() abort
     return
   endif
 
-  " タグファイル markdownディレクトリパスを取得
-  " `:p:h` markdown部分は、:h filename-modifiersで確認
+  " タグファイルのディレクトリパスを取得
+  " `:p:h`の部分は、:h filename-modifiersで確認
   let tags_dirpath = fnamemodify(tags_path, ':p:h')
-  " 見つかったタグファイル markdownディレクトリに移動して、ctagsをバックグラウンド実行（エラー出力破棄）
+  " 見つかったタグファイルのディレクトリに移動して、ctagsをバックグラウンド実行（エラー出力破棄）
   execute 'silent !cd' tags_dirpath '&& ctags -R -f' tag_name '2> /dev/null &'
 endfunction
 
@@ -341,7 +359,7 @@ nnoremap so <C-w>_<C-w>|
 nnoremap sO <C-w>=
 ```
 
-- 高さと幅 markdown調整
+- 高さと幅の調整
 ```
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
@@ -372,7 +390,12 @@ nnoremap sQ :<C-u>bd<CR>
 
 # fzf設定
 
+## 参考URL
+
+- [fzfを使おう](https://qiita.com/kompiro/items/a09c0b44e7c741724c80)
 曖昧検索ができる。
+
+## 設定
 
 - ;bでバッファ検索
 - ;fでファイル検索
@@ -427,7 +450,7 @@ hi GitGutterDelete guifg=#ff2222 ctermfg=1
 
 ## テスト
 
-主にGo markdownテスト用
+主にGoのテスト用
 
 ```
 let test#strategy = "dispatch"
@@ -479,5 +502,135 @@ nmap <buffer> <Leader>d <plug>(lsp-type-definition)
 nmap <buffer> <Leader>rf <plug>(lsp-references)
 nmap <buffer> <Leader>i <plug>(lsp-implementation)
 inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+```
+
+```
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_text_edit_enabled = 1
+let g:lsp_preview_float = 1
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
+
+let g:lsp_settings = {}
+let g:lsp_settings['gopls'] = {
+  \  'workspace_config': {
+  \    'usePlaceholders': v:true,
+  \    'analyses': {
+  \      'fillstruct': v:true,
+  \    },
+  \  },
+  \  'initialization_options': {
+  \    'usePlaceholders': v:true,
+  \    'analyses': {
+  \      'fillstruct': v:true,
+  \    },
+  \  },
+  \}
+```
+
+# ddc.vim
+
+## 参考URL
+
+- [新世代の自動補完プラグイン ddc.vim](https://zenn.dev/shougo/articles/ddc-vim-beta)
+
+- [ddc.vimとBuiltin LSPでサブ武器を錬成した](https://riq0h.jp/2021/09/15/084023/)
+
+## 設定
+```
+ call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'vsnip'])
+ call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \ 'matchers': ['matcher_head'],
+      \ 'sorters': ['sorter_rank'],
+      \ 'converters': ['converter_remove_overlap'],
+      \ },
+      \ 'around': {'mark': 'A'},
+      \ 'vim-lsp': {
+      \ 'mark': 'L',
+      \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*',
+      \ },
+      \ })
+
+ call ddc#custom#patch_global('sourceParams', {
+      \ 'around': {'maxSize': 500},
+      \ })
+
+ inoremap <silent><expr> <TAB>
+      \ ddc#map#pum_visible() ? '<C-n>' :
+      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+      \ '<TAB>' : ddc#map#manual_complete()
+ inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+ inoremap <expr><cr> ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+
+ call ddc#enable()
+
+```
+
+- 補完時に表示されるプレビューウィンドウを消す 
+  - [Vim - 補完時に表示されるプレビューウィンドウを消す](https://kannokanno.hatenablog.com/entry/2013/05/08/110557)
+```
+set completeopt+=menuone
+```
+
+# スニペット
+
+- C-yでvsnip展開、スペース、Shift+スペースで前後移動
+
+```
+imap <expr> <C-y> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-y>'
+smap <expr> <C-y> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-y>'
+imap <expr> <space> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<space>'
+smap <expr> <space> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<space>'
+imap <expr> <s-tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>'
+smap <expr> <s-tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<s-tab>'
+```
+
+- C-uでultisnip展開、スペース、Shift+スペースで前後移動
+
+```
+let g:UltiSnipsExpandTrigger="<C-u>"
+let g:UltiSnipsJumpForwardTrigger="<space>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+```
+
+# vim-terraform
+
+```
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
+```
+
+# quickrun
+
+```
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+
+let g:quickrun_config._ = {
+\   'runner'    : 'vimproc',
+\   'runner/vimproc/updatetime' : 60,
+\   'outputter' : 'error',
+\   'outputter/error/success' : 'buffer',
+\   'outputter/error/error'   : 'quickfix',
+\   'outputter/buffer/split'  : ':rightbelow 8sp',
+\   'outputter/buffer/close_on_empty' : 1,
+\}
+
+let g:quickrun_config["gobuild"] = {
+\   'command': 'go',
+\   'cmdopt' : './...',
+\   'exec': '%c build %o',
+\}
+
+let g:quickrun_config["goerrcheck"] = {
+\   'command': 'errcheck',
+\   'cmdopt' : '-blank -ignoretests ./...',
+\   'exec': '%c %o',
+\}
+
+ " autocmd BufWritePost *.go :QuickRun gobuild
+ " autocmd BufWritePost *.go :QuickRun goerrcheck
 ```
 
