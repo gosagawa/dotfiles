@@ -20,6 +20,7 @@ export HISTSIZE=1000
 export SAVEHIST=100000
 setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
+setopt nonomatch
 
 #directory
 setopt auto_cd
@@ -55,6 +56,9 @@ alias gl="git clone"
 alias gu="git fetch --tags --prune&& git pull origin"
 alias tb="git symbolic-ref --short HEAD|tr -d \"\\n\""
 alias cmam="git commit -a -m"
+alias co="~/dotfiles/co.sh"
+alias cob="~/dotfiles/cob.sh"
+alias bl="git branch"
 
 #docker
 alias dlog='docker logs'
@@ -78,12 +82,9 @@ function dreslogf() {
 #golang
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin
 export GODEBUG=asyncpreemptoff=1
-export GOENV_ROOT="$HOME/.goenv"
-export GOENV_DISABLE_GOPATH=1
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
+export GOROOT=/usr/local/opt/go/libexec
 
 #python
 export PATH=$PATH:$HOME/Library/Python/3.8/bin
