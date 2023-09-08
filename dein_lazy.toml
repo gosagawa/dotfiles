@@ -5,6 +5,14 @@
  depends = ['denops.vim']
 
 [[plugins]]
+ repo = 'Shougo/ddc-ui-native'
+ on_source = 'ddc.vim'
+
+[[plugins]]
+ repo = 'Shougo/ddu.vim'
+ depends = ['denops.vim']
+
+[[plugins]]
  repo = 'Shougo/ddc-around'
  on_source = 'ddc.vim'
 

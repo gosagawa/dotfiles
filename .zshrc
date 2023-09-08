@@ -81,13 +81,11 @@ function dreslogf() {
 
 #golang
 export GOPATH=$HOME/go
-export GOBIN=$HOME/go/bin
-export PATH=$PATH:$GOPATH/bin
 export GODEBUG=asyncpreemptoff=1
-export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
 
 #python
-export PATH=$PATH:$HOME/Library/Python/3.8/bin
+export PATH=$PATH:$HOME/Library/Python/3.10/bin
 
 #tmux
 [[ -s /Users/gsagawa/.tmuxinator/scripts/tmuxinator ]] && source /Users/gsagawa/.tmuxinator/scripts/tmuxinator
@@ -149,3 +147,4 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/Cellar/tfenv/1.0.1/versions/0.12.9/terraform terraform
 
 eval "$(direnv hook zsh)"
+export PATH="$HOME/.nodebrew/current/bin:$PATH"

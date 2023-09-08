@@ -7,7 +7,8 @@ GREP_ARG=${@:3}
 trap 'exit' 2
 
 s3_key_list=`aws s3api list-objects-v2 --bucket ${S3_BUCKET} --prefix ${S3_KEY_PREFIX} --query 'Contents[].Key' --output text`
+ESC=$(printf '\033') # \e や \x1b または $'\e' は使用しない
 for s3_key in ${s3_key_list}; do
-  echo "--- s3://${S3_BUCKET}/${s3_key}"
+  printf "${ESC}[32m%s${ESC}[m\n" "--- s3://${S3_BUCKET}/${s3_key}"
   aws s3 cp s3://${S3_BUCKET}/${s3_key} - | zcat | grep ${GREP_ARG}
 done

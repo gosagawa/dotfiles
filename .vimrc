@@ -399,6 +399,8 @@ let g:lsp_settings['gopls'] = {
 "--------------------------------------------------------------------------
 " ddc.vim
 
+call ddc#custom#patch_global('ui', 'native')
+
 call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'vsnip'])
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
@@ -417,16 +419,45 @@ call ddc#custom#patch_global('sourceParams', {
       \ 'around': {'maxSize': 500},
       \ })
 
-inoremap <silent><expr> <TAB>
-      \ ddc#map#pum_visible() ? '<C-n>' :
-      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-      \ '<TAB>' : ddc#map#manual_complete()
-inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
-inoremap <expr><cr> ddc#map#pum_visible() ? '<C-y>' : '<cr>'
+" inoremap <silent><expr> <TAB>
+"       \ ddc#map#pum_visible() ? '<C-n>' :
+"       \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+"       \ '<TAB>' : ddc#map#manual_complete()
+" inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+" inoremap <expr><cr> ddc#map#pum_visible() ? '<C-y>' : '<cr>'
 
 call ddc#enable()
 
 set completeopt+=menuone
+
+" You must set the default ui.
+" Note: ff ui
+" https://github.com/Shougo/ddu-ui-ff
+call ddu#custom#patch_global({
+    \ 'ui': 'ff',
+    \ })
+
+" You must set the default action.
+" Note: file kind
+" https://github.com/Shougo/ddu-kind-file
+call ddu#custom#patch_global({
+    \   'kindOptions': {
+    \     'file': {
+    \       'defaultAction': 'open',
+    \     },
+    \   }
+    \ })
+
+" Specify matcher.
+" Note: matcher_substring filter
+" https://github.com/Shougo/ddu-filter-matcher_substring
+call ddu#custom#patch_global({
+    \   'sourceOptions': {
+    \     '_': {
+    \       'matchers': ['matcher_substring'],
+    \     },
+    \   }
+    \ })
 
 "--------------------------------------------------------------------------
 " snippet

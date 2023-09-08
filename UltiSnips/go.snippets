@@ -623,6 +623,11 @@ out(-1)
 return
 endsnippet
 
+snippet ns "ns(...)"
+${1:n} := ns()
+${0}
+endsnippet
+
 snippet ni "ni(...)"
 ${1:n} := ni()
 ${0}
@@ -662,3 +667,9 @@ snippet ni4s "ni4s(...)"
 ${1:as}, ${2:bs}, ${3:cs}, ${4:ds} := ni4(${5:n})
 ${0}
 endsnippet
+
+snippet dxdy "dxdy"
+dx := []int{1, 0, -1, 0, 1, 1, -1, -1}
+dy := []int{0, 1, 0, -1, 1, -1, 1, -1}
+endsnippet
+
