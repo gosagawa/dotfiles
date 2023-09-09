@@ -375,9 +375,15 @@ command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
 
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_echo_delay = 500
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_float_insert_mode_enabled = 1
+let g:lsp_diagnostics_highlights_enabled = 1
+let g:lsp_diagnostics_highlights_insert_mode_enabled = 1
+let g:lsp_diagnostics_signs_enabled = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_text_edit_enabled = 1
 let g:lsp_preview_float = 1
-let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
 
 let g:lsp_settings = {}
