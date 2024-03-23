@@ -50,12 +50,6 @@ repo = 'rhysd/vim-clang-format'
 # find files
 
 [[plugins]]
-repo = 'Shougo/unite.vim'
-
-[[plugins]]
-repo = 'Shougo/vimfiler'
-
-[[plugins]]
 repo = 'mileszs/ack.vim'
 
 #--------------------------------------------------------------
@@ -86,10 +80,6 @@ depends = '/usr/local/opt/fzf'
 [[plugins]]
 repo = '/usr/local/opt/fzf'
 if = 'isdirectory("/usr/local/opt/fzf")'
-
-[[plugins]]
-repo = '~/.fzf'
-if = 'isdirectory(expand("~/.fzf"))'
 
 #--------------------------------------------------------------
 # vim-lsp
