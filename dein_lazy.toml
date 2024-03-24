@@ -9,10 +9,6 @@
  on_source = 'ddc.vim'
 
 [[plugins]]
- repo = 'Shougo/ddu.vim'
- depends = ['denops.vim']
-
-[[plugins]]
  repo = 'Shougo/ddc-around'
  on_source = 'ddc.vim'
 
@@ -35,10 +31,13 @@
 [[plugins]]
  repo = 'hrsh7th/vim-vsnip'
  on_event = 'InsertEnter'
- depends = ['vim-vsnip-integ', 'friendly-snippets']
+ depends = ['friendly-snippets']
 
 [[plugins]]
- repo = 'hrsh7th/vim-vsnip-integ'
+ repo = 'Shougo/ddc-source-lsp'
+
+[[plugins]]
+ repo = 'uga-rosa/ddc-source-vsnip'
 
 [[plugins]]
  repo = 'rafamadriz/friendly-snippets'

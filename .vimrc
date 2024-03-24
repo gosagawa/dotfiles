@@ -146,22 +146,6 @@ if dein#check_install()
   call dein#install()
 endif
 
-call dein#add('Shougo/ddu.vim')
-call dein#add('Shougo/ddu-ui-ff')
-call dein#add('Shougo/ddu-ui-filer')
-call dein#add('Shougo/ddu-source-file')
-call dein#add('Shougo/ddu-source-file_rec')
-call dein#add('shun/ddu-source-rg')
-call dein#add('shun/ddu-source-buffer')
-call dein#add('Shougo/ddu-source-line')
-call dein#add('Shougo/ddu-source-register')
-call dein#add('yuki-yano/ddu-filter-fzf')
-call dein#add('Shougo/ddu-kind-file')
-call dein#add('Shougo/ddu-kind-word')
-call dein#add('ryota2357/ddu-column-icon_filename')
-call dein#add('Shougo/ddu-column-filename')
-call dein#add('Shougo/ddu-commands.vim')
-
 "--------------------------------------------------------------------------
 "display setting
 
@@ -366,18 +350,37 @@ endfunction
 "--------------------
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
+
+	nnoremap <buffer> >
+	\ <Cmd>call ddu#ui#do_action('updateOptions', #{
+	\   sourceOptions: #{
+	\     _: #{
+	\       matchers: ToggleHidden(),
+	\     },
+	\   },
+	\ })<CR>
+	\<Cmd>call ddu#ui#do_action('redraw')<CR>
+	
+	function ToggleHidden()
+	  const current = ddu#custom#get_current(b:ddu_ui_name)
+	  const source_options = get(current, 'sourceOptions', {})
+	  const source_options_all = get(source_options, '_', {})
+	  const matchers = get(source_options_all, 'matchers', [])
+	  return empty(matchers) ? ['matcher_hidden'] : []
+    endfunction
+
 	nnoremap <buffer><silent><expr> <CR>
 	\	ddu#ui#get_item()->get('isTree', v:false) ?
-	\		"<Cmd>call ddu#ui#filer#do_action('expandItem', {'mode': 'toggle'})<CR>" :
-	\		"<Cmd>call ddu#ui#filer#do_action('itemAction')<CR>"
+	\		"<Cmd>call ddu#ui#do_action('expandItem', {'mode': 'toggle'})<CR>" :
+	\		"<Cmd>call ddu#ui#do_action('itemAction')<CR>"
 	nnoremap <buffer><silent><expr> h
 	\	ddu#ui#get_item()->get('isTree', v:false) ?
-	\		"<Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>" :
-	\		"<Cmd>call ddu#ui#filer#do_action('preview')<CR>"
+	\		"<Cmd>call ddu#ui#do_action('collapseItem')<CR>" :
+	\		"<Cmd>call ddu#ui#do_action('preview')<CR>"
 	nnoremap <buffer><silent><expr> l
 	\	ddu#ui#get_item()->get('isTree', v:false) ?
-	\		"<Cmd>call ddu#ui#filer#do_action('expandItem')<CR>" :
-	\		"<Cmd>call ddu#ui#filer#do_action('preview')<CR>"
+	\		"<Cmd>call ddu#ui#do_action('expandItem')<CR>" :
+	\		"<Cmd>call ddu#ui#do_action('preview')<CR>"
 	nnoremap <buffer><silent> j j<Cmd>call ddu#ui#do_action('preview')<CR>
 	nnoremap <buffer><silent> k k<Cmd>cal ddu#ui#do_action('preview')<CR>
 	nnoremap <buffer><silent> <C-d> <C-d><Cmd>cal ddu#ui#do_action('preview')<CR>
@@ -581,18 +584,22 @@ let g:lsp_settings['gopls'] = {
 
 call ddc#custom#patch_global('ui', 'native')
 
-call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'vsnip'])
+call ddc#custom#patch_global('sources', ['vim-lsp', 'around'])
+" call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'vsnip'])
 call ddc#custom#patch_global('sourceOptions', {
-      \ '_': {
-      \ 'matchers': ['matcher_head'],
-      \ 'sorters': ['sorter_rank'],
-      \ 'converters': ['converter_remove_overlap'],
-      \ },
-      \ 'around': {'mark': 'A'},
-      \ 'vim-lsp': {
-      \ 'mark': 'L',
-      \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*',
-      \ },
+      \   '_': {
+      \     'matchers': ['matcher_head'],
+      \     'sorters': ['sorter_rank'],
+      \     'converters': ['converter_remove_overlap'],
+      \   },
+      \   'around': {'mark': 'A'},
+      \   'vim-lsp': {
+      \     'mark': 'L',
+      \     'forceCompletionPattern': '\.\w*|:\w*|->\w*',
+      \   },
+      \   'vsnip': {
+      \     'mark': 'vsnip',
+      \   },
       \ })
 
 call ddc#custom#patch_global('sourceParams', {
