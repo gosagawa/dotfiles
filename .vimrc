@@ -351,7 +351,7 @@ endfunction
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
 
-	nnoremap <buffer> >
+	nnoremap <buffer> .
 	\ <Cmd>call ddu#ui#do_action('updateOptions', #{
 	\   sourceOptions: #{
 	\     _: #{
@@ -373,18 +373,8 @@ function! s:ddu_filer_my_settings() abort
 	\	ddu#ui#get_item()->get('isTree', v:false) ?
 	\		"<Cmd>call ddu#ui#do_action('expandItem', {'mode': 'toggle'})<CR>" :
 	\		"<Cmd>call ddu#ui#do_action('itemAction')<CR>"
-	nnoremap <buffer><silent><expr> h
-	\	ddu#ui#get_item()->get('isTree', v:false) ?
-	\		"<Cmd>call ddu#ui#do_action('collapseItem')<CR>" :
-	\		"<Cmd>call ddu#ui#do_action('preview')<CR>"
-	nnoremap <buffer><silent><expr> l
-	\	ddu#ui#get_item()->get('isTree', v:false) ?
-	\		"<Cmd>call ddu#ui#do_action('expandItem')<CR>" :
-	\		"<Cmd>call ddu#ui#do_action('preview')<CR>"
-	nnoremap <buffer><silent> j j<Cmd>call ddu#ui#do_action('preview')<CR>
-	nnoremap <buffer><silent> k k<Cmd>cal ddu#ui#do_action('preview')<CR>
-	nnoremap <buffer><silent> <C-d> <C-d><Cmd>cal ddu#ui#do_action('preview')<CR>
-	nnoremap <buffer><silent> <C-u> <C-u><Cmd>cal ddu#ui#do_action('preview')<CR>
+	nnoremap <buffer><silent> h <Cmd>call ddu#ui#do_action('collapseItem')<CR>
+	nnoremap <buffer><silent> l <Cmd>call ddu#ui#do_action('expandItem')<CR>
 	nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('quit')<CR>
 	nnoremap <buffer><silent> cp <Cmd>call ddu#ui#do_action('itemAction', {'name': 'copy'})<CR>
 	nnoremap <buffer><silent> p <Cmd>call ddu#ui#do_action('itemAction', {'name': 'paste'})<CR>
