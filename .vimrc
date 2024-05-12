@@ -316,10 +316,6 @@ nnoremap <Leader>b <Cmd>Ddu buffer -ui-param-ff-startFilter=v:false<CR>
 nnoremap <Leader>o <Cmd>Ddu line<CR>
 nnoremap <Leader>r <Cmd>Ddu register -ui-param-ff-startFilter=v:false<CR>
 nnoremap <Leader>e <Cmd>Ddu -name=file_rec<CR>
-nnoremap <Leader>fi <Cmd>call ddu#start({
-\   'name': 'filer',
-\   'searchPath': expand('%:p'),
-\ })<CR>
 nnoremap <Leader>g <Cmd>Ddu rg -name=grep -source-param-rg-input='`'Pattern: '->input('<cword>'->expand())`'<CR>
 nnoremap <C-g> <Cmd>Ddu -name=grep<CR>
 nnoremap <C-n> <Cmd>call ddu#ui#multi_actions(['cursorNext', 'itemAction'], 'grep')<CR>
@@ -352,10 +348,16 @@ endfunction
 "--------------------
 " Filer
 "--------------------
+
+nnoremap <Leader>fi <Cmd>call ddu#start({
+\   'name': 'filer',
+\   'searchPath': expand('%:p'),
+\ })<CR>
+
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
 
-	nnoremap <buffer> .
+	nnoremap <buffer><silent> hd
 	\ <Cmd>call ddu#ui#do_action('updateOptions', #{
 	\   sourceOptions: #{
 	\     _: #{
@@ -368,17 +370,21 @@ function! s:ddu_filer_my_settings() abort
 
 	nnoremap <buffer><silent><expr> <CR>
 	\	ddu#ui#get_item()->get('isTree', v:false) ?
-	\		"<Cmd>call ddu#ui#do_action('expandItem', {'mode': 'toggle'})<CR>" :
-	\		"<Cmd>call ddu#ui#do_action('itemAction')<CR>"
+	\	"<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>" :
+	\	"<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open','params': {'command': 'vsplit'}})<CR>"
+
+	nnoremap <buffer><silent> ..
+	\	<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow','params': {'path': '..'}})<CR>
+
 	nnoremap <buffer><silent> h <Cmd>call ddu#ui#do_action('collapseItem')<CR>
-	nnoremap <buffer><silent> l <Cmd>call ddu#ui#do_action('expandItem')<CR>
+	nnoremap <buffer><silent> l <Cmd>call ddu#ui#do_action('expandItem', {'mode': 'toggle'})<CR>
 	nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('quit')<CR>
 	nnoremap <buffer><silent> cp <Cmd>call ddu#ui#do_action('itemAction', {'name': 'copy'})<CR>
 	nnoremap <buffer><silent> p <Cmd>call ddu#ui#do_action('itemAction', {'name': 'paste'})<CR>
-	nnoremap <buffer><silent> rm <Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>
-	nnoremap <buffer><silent> mv <Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>
-	nnoremap <buffer><silent> cu <Cmd>call ddu#ui#do_action('itemAction', {'name': 'move'})<CR>
-	nnoremap <buffer><silent> to <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>
+	nnoremap <buffer><silent> dd <Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>
+	nnoremap <buffer><silent> r <Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>
+	nnoremap <buffer><silent> mv <Cmd>call ddu#ui#do_action('itemAction', {'name': 'move'})<CR>
+	nnoremap <buffer><silent> n <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>
 	nnoremap <buffer><silent> mk <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newDirectory'})<CR>
 	nnoremap <buffer><silent> yy <Cmd>call ddu#ui#do_action('itemAction', {'name': 'yank'})<CR>
 endfunction
