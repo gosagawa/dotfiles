@@ -244,6 +244,8 @@ call ddu#custom#patch_global({
 \			'winWidth': 40,
 \			'split': 'vertical',
 \			'splitDirection': 'topleft',
+\			'sort': 'filename',
+\			'sortTreesFirst': v:true,
 \		},
 \	},
 \	'sourceOptions': {
@@ -314,8 +316,10 @@ nnoremap <Leader>b <Cmd>Ddu buffer -ui-param-ff-startFilter=v:false<CR>
 nnoremap <Leader>o <Cmd>Ddu line<CR>
 nnoremap <Leader>r <Cmd>Ddu register -ui-param-ff-startFilter=v:false<CR>
 nnoremap <Leader>e <Cmd>Ddu -name=file_rec<CR>
-nnoremap <Leader>fi <Cmd>Ddu -name=filer<CR>
-
+nnoremap <Leader>fi <Cmd>call ddu#start({
+\   'name': 'filer',
+\   'searchPath': expand('%:p'),
+\ })<CR>
 nnoremap <Leader>g <Cmd>Ddu rg -name=grep -source-param-rg-input='`'Pattern: '->input('<cword>'->expand())`'<CR>
 nnoremap <C-g> <Cmd>Ddu -name=grep<CR>
 nnoremap <C-n> <Cmd>call ddu#ui#multi_actions(['cursorNext', 'itemAction'], 'grep')<CR>
@@ -361,13 +365,6 @@ function! s:ddu_filer_my_settings() abort
 	\ })<CR>
 	\<Cmd>call ddu#ui#do_action('redraw')<CR>
 	
-	function ToggleHidden()
-	  const current = ddu#custom#get_current(b:ddu_ui_name)
-	  const source_options = get(current, 'sourceOptions', {})
-	  const source_options_all = get(source_options, '_', {})
-	  const matchers = get(source_options_all, 'matchers', [])
-	  return empty(matchers) ? ['matcher_hidden'] : []
-    endfunction
 
 	nnoremap <buffer><silent><expr> <CR>
 	\	ddu#ui#get_item()->get('isTree', v:false) ?
@@ -384,6 +381,14 @@ function! s:ddu_filer_my_settings() abort
 	nnoremap <buffer><silent> to <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>
 	nnoremap <buffer><silent> mk <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newDirectory'})<CR>
 	nnoremap <buffer><silent> yy <Cmd>call ddu#ui#do_action('itemAction', {'name': 'yank'})<CR>
+endfunction
+
+function ToggleHidden()
+  const current = ddu#custom#get_current(b:ddu_ui_name)
+  const source_options = get(current, 'sourceOptions', {})
+  const source_options_all = get(source_options, '_', {})
+  const matchers = get(source_options_all, 'matchers', [])
+  return empty(matchers) ? ['matcher_hidden'] : []
 endfunction
 
 "--------------------------------------------------------------------------
