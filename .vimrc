@@ -371,7 +371,7 @@ function! s:ddu_filer_my_settings() abort
 	nnoremap <buffer><silent><expr> <CR>
 	\	ddu#ui#get_item()->get('isTree', v:false) ?
 	\	"<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>" :
-	\	"<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open','params': {'command': 'vsplit'}})<CR>"
+	\	"<Cmd>call ddu#ui#filer#do_action('itemAction')<CR>"
 
 	nnoremap <buffer><silent> ..
 	\	<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow','params': {'path': '..'}})<CR>

@@ -175,7 +175,7 @@ endsnippet
 
 
 # error snippet
-snippet errn "Error return" !b
+snippet err "Error return" !b
 if err != nil {
 	return err
 }
@@ -623,6 +623,11 @@ out(-1)
 return
 endsnippet
 
+snippet dbg "dbg(...)"
+dbg(${1:o})
+${0}
+endsnippet
+
 snippet ns "ns(...)"
 ${1:n} := ns()
 ${0}
@@ -673,3 +678,79 @@ dx := []int{1, 0, -1, 0, 1, 1, -1, -1}
 dy := []int{0, 1, 0, -1, 1, -1, 1, -1}
 endsnippet
 
+snippet dfs "dfs"
+var dfs func(v, p int)
+dfs = func(v, p int) {
+	for _, nv := range edges[v] {
+		if nv.to == p {
+			continue
+		}
+		dfs(nv.to, v)
+	}
+}
+endsnippet
+
+snippet bfs "bfs"
+	q := list.New()
+	q.PushBack(val)
+	e := q.Front()
+	for e != nil {
+		t := e.Value.(int)
+
+		// Do something
+
+		e = e.Next()
+	}
+endsnippet
+
+snippet bfsgrid "bfsgrid"
+	q := list.New()
+	q.PushBack(point{0, 0})
+	e := q.Front()
+	dx := []int{1, 0, -1, 0, 1, 1, -1, -1}
+	dy := []int{0, 1, 0, -1, 1, -1, 1, -1}
+	dist := i2s(h, w, inf)
+	dist[0][0] = 0
+	for e != nil {
+		t := e.Value.(point)
+
+		for k := 0; k < 4; k++ {
+			np := point{t.x + dx[k], t.y + dy[k]}
+			if !np.isValid(h, w) || dist[np.x][np.y] != inf {
+				continue
+			}
+			dist[np.x][np.y] = dist[t.x][t.y] + 1
+			q.PushBack(np)
+		}
+
+		e = e.Next()
+	}
+endsnippet
+
+snippet tree "tree"
+	n := ni()
+	edges := make([][]edge, n)
+	for i := 0; i < n-1; i++ {
+		s, t := ni2()
+		s--
+		t--
+		edges[s] = append(edges[s], edge{to: t})
+		edges[t] = append(edges[t], edge{to: s})
+	}
+endsnippet
+
+snippet dijkstra "dijkstra"
+	v, e := ni2()
+	edges := make([][]edge, v)
+
+	for i := 0; i < e; i++ {
+		s, t, c := ni3()
+		s--
+		t--
+		edges[s] = append(edges[s], edge{to: t, cost: c})
+		edges[t] = append(edges[t], edge{to: s, cost: c})
+	}
+
+	graph := newgraph(v, edges)
+	dist := graph.dijkstra(0)
+endsnippet
