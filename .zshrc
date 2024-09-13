@@ -84,6 +84,16 @@ export GOPATH=$HOME/go
 export GODEBUG=asyncpreemptoff=1
 export PATH=$PATH:$GOPATH/bin
 
+switchGOROOT() {
+	export GOROOT=`go$1 env GOROOT`
+	export PATH=$GOROOT/bin:$PATH
+	go version
+}
+switchGOROOT 1.22.7
+
+# 重複したパスを削除
+typeset -U PATH
+
 #python
 export PATH=$PATH:$HOME/Library/Python/3.10/bin
 
