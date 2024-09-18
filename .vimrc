@@ -370,11 +370,11 @@ function! s:ddu_filer_my_settings() abort
 
 	nnoremap <buffer><silent><expr> <CR>
 	\	ddu#ui#get_item()->get('isTree', v:false) ?
-	\	"<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>" :
-	\	"<Cmd>call ddu#ui#filer#do_action('itemAction')<CR>"
+	\	"<Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow'})<CR>" :
+	\	"<Cmd>call ddu#ui#do_action('itemAction')<CR>"
 
 	nnoremap <buffer><silent> ..
-	\	<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow','params': {'path': '..'}})<CR>
+	\	<Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow','params': {'path': '..'}})<CR>
 
 	nnoremap <buffer><silent> h <Cmd>call ddu#ui#do_action('collapseItem')<CR>
 	nnoremap <buffer><silent> l <Cmd>call ddu#ui#do_action('expandItem', {'mode': 'toggle'})<CR>
